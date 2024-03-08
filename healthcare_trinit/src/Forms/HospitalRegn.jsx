@@ -2,13 +2,23 @@ import React, { useState } from 'react';
 
 function HospitalRegistrationForm() {
   const [formData, setFormData] = useState({
-    name: '',
-    foundedYear: '',
-    address: '',
-    doctorName: '',
-    doctorSpecialization: '',
-    walletAddress: ''
+    hospitalName: '',
+    hospitalType: '',
+    government: '',
+    hospitalAddress: '',
+    state: '',
+    district: '',
+    website: '',
+    walletNumber: ''
   });
+
+  const [districts, setDistricts] = useState([]);
+  
+  const states = [
+    { name: 'State 1', districts: ['District 1', 'District 2', 'District 3'] },
+    { name: 'State 2', districts: ['District A', 'District B', 'District C'] },
+    // Add more states and their districts as needed
+  ];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,11 +26,15 @@ function HospitalRegistrationForm() {
       ...formData,
       [name]: value
     });
+    
+    if (name === 'state') {
+      const selectedState = states.find(state => state.name === value);
+      setDistricts(selectedState ? selectedState.districts : []);
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // You can perform form validation or submit the data to an API here
     console.log(formData);
   };
 
@@ -29,66 +43,103 @@ function HospitalRegistrationForm() {
       <h2>Hospital Registration Form</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="name">Hospital Name:</label>
+          <label htmlFor="hospitalName">Hospital Name:</label>
           <input
             type="text"
-            id="name"
-            name="name"
-            value={formData.name}
+            id="hospitalName"
+            name="hospitalName"
+            value={formData.hospitalName}
             onChange={handleChange}
             required
           />
         </div>
         <div>
-          <label htmlFor="foundedYear">Founded Year:</label>
-          <input
-            type="number"
-            id="foundedYear"
-            name="foundedYear"
-            value={formData.foundedYear}
+          <label htmlFor="hospitalType">Hospital Type:</label>
+          <select
+            id="hospitalType"
+            name="hospitalType"
+            value={formData.hospitalType}
             onChange={handleChange}
             required
-          />
+          >
+            <option value="">Select Type</option>
+            <option value="Public">Public</option>
+            <option value="Private">Private</option>
+          </select>
         </div>
         <div>
-          <label htmlFor="address">Address:</label>
+          <label htmlFor="government">Government:</label>
+          <select
+            id="government"
+            name="government"
+            value={formData.government}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Select Government</option>
+            <option value="Central">Central</option>
+            <option value="State">State</option>
+            <option value="Local">Local</option>
+          </select>
+        </div>
+        <div>
+          <label htmlFor="hospitalAddress">Hospital Address:</label>
           <textarea
-            id="address"
-            name="address"
-            value={formData.address}
+            id="hospitalAddress"
+            name="hospitalAddress"
+            value={formData.hospitalAddress}
             onChange={handleChange}
             required
           ></textarea>
         </div>
         <div>
-          <label htmlFor="doctorName">Doctor's Name:</label>
+          <label htmlFor="state">State:</label>
+          <select
+            id="state"
+            name="state"
+            value={formData.state}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Select State</option>
+            {states.map(state => (
+              <option key={state.name} value={state.name}>{state.name}</option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label htmlFor="district">District:</label>
+          <select
+            id="district"
+            name="district"
+            value={formData.district}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Select District</option>
+            {districts.map(district => (
+              <option key={district} value={district}>{district}</option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label htmlFor="website">Website:</label>
           <input
-            type="text"
-            id="doctorName"
-            name="doctorName"
-            value={formData.doctorName}
+            type="url"
+            id="website"
+            name="website"
+            value={formData.website}
             onChange={handleChange}
             required
           />
         </div>
         <div>
-          <label htmlFor="doctorSpecialization">Doctor's Specialization:</label>
+          <label htmlFor="walletNumber">Wallet Number:</label>
           <input
             type="text"
-            id="doctorSpecialization"
-            name="doctorSpecialization"
-            value={formData.doctorSpecialization}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="walletAddress">Wallet Address:</label>
-          <input
-            type="text"
-            id="walletAddress"
-            name="walletAddress"
-            value={formData.walletAddress}
+            id="walletNumber"
+            name="walletNumber"
+            value={formData.walletNumber}
             onChange={handleChange}
             required
           />

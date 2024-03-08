@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import HospitalRegn from './Forms/HospitalRegn'; // Import the HospitalRegn component
 import PatientRegn from './Forms/PatientRegn'; // Import the PatientRegn component
+import AppointmentBook from './Forms/Appointment'; // Import the AppointmentBookingForm component
 
 const App = () => {
     const [userType, setUserType] = useState(null); // State to track user selection
@@ -16,12 +17,15 @@ const App = () => {
             return <HospitalRegn />;
         } else if (userType === 'patient') {
             return <PatientRegn />;
+        } else if (userType === 'appointment') {
+            return <AppointmentBook />;
         } else {
             return (
                 <div>
                     <h2>Select User Type</h2>
                     <button onClick={() => handleUserSelect('hospital')}>Hospital</button>
                     <button onClick={() => handleUserSelect('patient')}>Patient</button>
+                    <button onClick={() => handleUserSelect('appointment')}>Book Appointment</button> {/* New option */}
                 </div>
             );
         }
