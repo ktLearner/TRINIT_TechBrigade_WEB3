@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import HospitalRegn from './Forms/HospitalRegn'; // Import the HospitalRegn component
 import PatientRegn from './Forms/PatientRegn'; // Import the PatientRegn component
+import UploadForm from './Forms/UploadForm'
 
 const App = () => {
     const [userType, setUserType] = useState(null); // State to track user selection
@@ -29,6 +30,7 @@ const App = () => {
 
     return (
         <div>
+            <UploadForm />
             <h1>My React App</h1>
             {renderContent()} {/* Render content based on user selection */}
         </div>
