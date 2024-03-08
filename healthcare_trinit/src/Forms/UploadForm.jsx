@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 // Hardcode Pinata API key and secret (not recommended for production)
-const PINATA_API_KEY = 'your_pinata_api_key';
-const PINATA_API_SECRET = 'your_pinata_api_secret';
+const PINATA_API_KEY = 'api';
+const PINATA_API_SECRET = 'secret';
 
 const UploadForm = () => {
     const [file, setFile] = useState(null);
