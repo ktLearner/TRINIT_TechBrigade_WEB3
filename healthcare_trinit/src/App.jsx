@@ -42,7 +42,6 @@ const App = () => {
 
     return (
         <div>
-            <UploadForm />
             <h1>My React App</h1>
             {renderContent()} {/* Render content based on user selection */}
         </div>
