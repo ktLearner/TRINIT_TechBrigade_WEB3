@@ -11,11 +11,13 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 2em #ffab40aa); /* Similar to original but with a warmer tone */
 }
+
 .logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  filter: drop-shadow(0 0 2em #6fbf73aa); /* Adjusted to a greenish tone */
 }
 
 @keyframes logo-spin {
@@ -35,6 +37,9 @@
 
 .card {
   padding: 2em;
+  background-color: #f0f0f0; /* Light gray background */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
 }
 
 .read-the-docs {
