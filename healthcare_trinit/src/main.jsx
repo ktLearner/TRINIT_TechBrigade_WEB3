@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
+import Home from './components/appoint/userlogin';
 import CalendarBooking from './components/appoint/datebook'
 import HospitalSelector from './components/Hospitals/Hospital';
 import DepartmentSelection from './components/appoint/department';
@@ -23,7 +24,11 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: '/hospital',
+    path: "/dashboard",
+    element: <Home />,
+  },
+  {
+    path: '/dashboard/hospital',
     element: <HospitalSelector />
   },
   {

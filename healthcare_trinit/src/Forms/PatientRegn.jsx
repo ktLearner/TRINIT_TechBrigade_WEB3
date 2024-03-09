@@ -6,7 +6,8 @@ function PatientRegistrationForm() {
     dob: '',
     gender: '',
     contactNumber: '',
-    emailAddress: ''
+    emailAddress: '',
+    description: ''
   });
 
   const handleChange = (e) => {
@@ -82,6 +83,17 @@ function PatientRegistrationForm() {
             id="emailAddress"
             name="emailAddress"
             value={formData.emailAddress}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="description">Description:</label>
+          <input
+            type="text"
+            id="description"
+            name="description"
+            value={formData.description}
             onChange={handleChange}
             required
           />

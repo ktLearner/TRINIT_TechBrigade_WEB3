@@ -3,7 +3,6 @@ import Hero from './Hero';
 
 
 const App = () => {
-
     return (
         <div>
             <Hero />
