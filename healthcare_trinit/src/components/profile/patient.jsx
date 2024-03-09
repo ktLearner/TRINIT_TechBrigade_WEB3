@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import UseWallet from "../../../wallet/wallet";
 import { GetPatientProfile } from "../../_contract/contract_functions";
 import Navbar from "../Navbar/Navbar";
+import { Link } from "react-router-dom";
 
 function PatientProfile() {
   const [address, setAddress] = useState(
@@ -44,7 +45,7 @@ function PatientProfile() {
   }, [profile]); // Log profile when it changes
 
   return (
-    <div class = "bg-[#00FFFF]">
+    <div class="bg-[#00FFFF]">
 
       <Navbar setAddress={setAddress} />
 
@@ -70,6 +71,14 @@ function PatientProfile() {
             <p>&nbsp;&nbsp;&#125;</p>
             <p>&#123;</p>
           </div>
+        </div>
+        <div class ="pl-20">
+      <Link
+        className="bg-gray-900  pl-4 py-2 px-9 rounded-full mr-4"
+        to="/user_profile"
+        >
+        <span class="text-red-500">Register</span> <span class="text-yellow-300">as</span> <span class ="text-green-500">Hospital</span>   
+      </Link>
         </div>
       </div>
 
