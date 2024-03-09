@@ -10,7 +10,6 @@ const Hero = () => {
           <div className='w-5 h-5 rounded-full bg-[#00FFFF]' />
           <div className='w-1 sm:h-80 h-40 violet-gradient' />
         </div>
-
         <div>
           <h1 className={` font-black lg:text-[80px] sm:text-[60px] xs:text-[50px] text-[40px] lg:leading-[98px] mt-2 text-white`}>
             Decentralized <span className='text-[#00FFFF]'> HealthCare </span> Platform
@@ -25,7 +24,7 @@ const Hero = () => {
       {/* Added Buttons */}
       <div className="absolute inset-x-0 bottom-8 flex justify-center">
         <Link className="bg-[#00FFFF] text-black py-2 px-9 rounded-full mr-4" to ="dashboard">Patient</Link>
-        <button className="bg-[#00FFFF] text-black py-2 px-9 rounded-full" >Hospital</button>
+        <Link className="bg-[#00FFFF] text-black py-2 px-9 rounded-full" to="dashboard-hospital">Hospital</Link>
       </div>
         </section>
   );
