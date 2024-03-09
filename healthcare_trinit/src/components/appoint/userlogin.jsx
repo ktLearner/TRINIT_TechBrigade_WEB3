@@ -23,7 +23,7 @@ export default function Home() {
         <div>
           <Navbar></Navbar>
           <div>
-            {wallet == null ? (
+            {/* {wallet == null ? (
               <>
                 <div
                   className="bg-[#00FFFF] text-black py-2 px-9 rounded-full mr-4"
@@ -32,8 +32,8 @@ export default function Home() {
                   Login To Metamask
                 </div>
               </>
-            ) : (
-              <>
+            ) : ( */}
+              {/* <> */}
                 <PatientRegistrationForm />
                 <button
                   className="bg-[#00FFFF] text-black py-2 px-9 rounded-full mr-4"
@@ -41,8 +41,8 @@ export default function Home() {
                 >
                   Dashboard
                 </button>
-              </>
-            )}
+              {/* </> */}
+            {/* )} */}
           </div>
         </div>
     </main>
