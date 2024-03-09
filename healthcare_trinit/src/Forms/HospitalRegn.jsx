@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { RegisHospital } from '../_contract/contract_functions';
 
 function HospitalRegistrationForm() {
   const [formData, setFormData] = useState({
@@ -13,7 +14,7 @@ function HospitalRegistrationForm() {
   });
 
   const [districts, setDistricts] = useState([]);
-  
+
   const states = [
     { name: 'State 1', districts: ['District 1', 'District 2', 'District 3'] },
     { name: 'State 2', districts: ['District A', 'District B', 'District C'] },
@@ -26,17 +27,19 @@ function HospitalRegistrationForm() {
       ...formData,
       [name]: value
     });
-    
+
     if (name === 'state') {
       const selectedState = states.find(state => state.name === value);
       setDistricts(selectedState ? selectedState.districts : []);
     }
   };
 
-  const handleSubmit = (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
     console.log(formData);
-  };
+    let res = await RegisHospital(window.ethereum, formData.hospitalName, formData.hospitalType, formData.hospitalAddress, formData.state, formData.district, formData.website);
+    console.log(res);
+  }
 
   return (
     <div>

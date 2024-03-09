@@ -1,18 +1,28 @@
-import React, { useState } from 'react';
-import UploadForm from './UploadForm'; 
+import React, { useState, useEffect } from 'react';
+import UploadForm from './UploadForm';
 import { createHWpRecord } from "../_contract/contract_functions";
+import { GetPatientId } from '../_contract/contract_functions';
 
 function doc_details() {
 
     const [bp, setbp] = useState('');
     const [weight, setweight] = useState('');
     const [height, setheight] = useState('');
+    const [id, setId] = useState(null);
+
+    useEffect(() => {
+        async function getid(){
+            let id = await GetPatientId(window.ethereum);
+            setId(id);
+        }
+        getid();
+    }, [])
 
 
     const handleSubmit = (event) => {
         event.preventDefault();
         // Here you can perform any action with the form data, such as sending it to a server
-        createHWpRecord( "user_id",bp, weight, height );
+        createHWpRecord(window.ethereum, id, bp, weight, height );
         // Clear the form fields after submission
         setbp('');
         setheight('');
@@ -24,7 +34,7 @@ function doc_details() {
 
         <div>
             <form class="w-full max-w-lg" onSubmit={handleSubmit}>
-    
+
                 <div class="md:flex md:items-center mb-4">
                     <div class="md:w-1/3">
                         <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
@@ -49,7 +59,7 @@ function doc_details() {
                             class="bg-gray-200 appearance-none border border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 mb-4" id="inline-full-name" type="text" />
                     </div>
                 </div>
-    
+
                 <div class="flex flex-wrap -mx-3 mb-4">
                     <div class="md:w-1/3">
                         <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
@@ -65,12 +75,12 @@ function doc_details() {
                             class="bg-gray-200 appearance-none border border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 mb-4"   />
                     </div>
                 </div>
-               
-                
 
 
-                
-                
+
+
+
+
                 <div class="md:flex md:items-center">
                     <div class="md:w-2/4"></div>
                     <div class="">
@@ -81,13 +91,13 @@ function doc_details() {
                         </button>
                     </div>
                 </div>
-                
+
                 <UploadForm />
 
             </form>
         </div>
     </div>
-    
+
     )
 }
 

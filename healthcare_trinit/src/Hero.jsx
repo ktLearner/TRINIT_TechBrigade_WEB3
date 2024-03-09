@@ -8,18 +8,24 @@ const navigate = useNavigate();
         navigate(`/dashboard/hospital/`);
     };
     console.log(address);
-  function userType(address){
-    if(IsPatientReg(address)){
-      return "patient";
-      // return "hospital";
-      // return "none";
-    }
-    else{
-      // return "patient";
-      // return "hospital";
-      return "none";
-    }
+    async function userType(address) {
+      try {
+          let is_p = await IsPatientReg(window.ethereum);
+          console.log("Result:", is_p);
+
+          if (is_p === false || is_p === "false") {
+              return "none";
+          } else {
+              return "patient";
+          }
+      } catch (error) {
+          console.error("Error checking user type:", error);
+          return "error";
+      }
   }
+
+
+
   return (
     <section
       className={`relative w-full mx-auto pd-20`}
@@ -70,7 +76,7 @@ const navigate = useNavigate();
       )}
       {address && address !== "null" && (
         <div className="flex justify-center mb-8">
-          {userType(address) == "patient" && (
+          {true&& (
             <>
               <button
                 className="bg-[#00FFFF] text-black py-2 px-9 rounded-full mr-4"
@@ -94,14 +100,14 @@ const navigate = useNavigate();
               </Link>
             </>
           )}
-          {userType(address) == "hospital" && (
+          {true && (
             <>
               <button className="bg-[#00FFFF] text-black py-2 px-9 rounded-full">
                 Hospital
               </button>
             </>
           )}
-          {userType(address) == "none" && (
+          {true && (
             <>
               <Link
                 className="bg-[#00FFFF] text-black py-2 px-9 rounded-full mr-4"

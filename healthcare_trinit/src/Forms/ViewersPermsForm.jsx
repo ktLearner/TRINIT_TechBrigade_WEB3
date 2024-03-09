@@ -18,7 +18,7 @@ function ViewerPermsForm() {
   };
 
   const handleDelete = (index) => {
-    RemoveViewer(wallet, viewers[index]);
+    RemoveViewer(window.ethereum, wallet, viewers[index]);
     const updatedViewers = [...viewers];
     updatedViewers.splice(index, 1);
     setViewers(updatedViewers);
@@ -30,7 +30,7 @@ function ViewerPermsForm() {
       walletAddress: formData.viewerWallet,
       // Add other data associated with the viewer if needed
     };
-    AddViewer(wallet, newViewer);
+    AddViewer(window.ethereum, wallet, newViewer);
     setViewers([...viewers, newViewer]);
     // Reset the form data
     setFormData({

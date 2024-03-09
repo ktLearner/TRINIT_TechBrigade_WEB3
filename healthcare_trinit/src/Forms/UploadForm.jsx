@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { createReport } from "../_contract/contract_functions";
+import { GetPatientId } from '../_contract/contract_functions';
 
 // Hardcode Pinata API key and secret (not recommended for production)
 // const PINATA_API_KEY = process.env.REACT_APP_PINATA_API_KEY;
@@ -11,6 +12,15 @@ const PINATA_API_SECRET= import.meta.env.VITE_PINATA_API_SECRET;
 
 
 const UploadForm = () => {
+    const [id, setId] = useState(null);
+
+    useEffect(() => {
+        async function getid(){
+            let id = await GetPatientId(window.ethereum);
+            setId(id);
+        }
+        getid();
+    }, [])
     const [file, setFile] = useState(null);
     const [uploadedCID, setUploadedCID] = useState(null);
 
@@ -40,7 +50,8 @@ const UploadForm = () => {
             });
 
             const { IpfsHash } = response.data;
-            await createReport("user_value",IpfsHash);
+            console.log(IpfsHash);
+            await createReport(window.ethereum, id,IpfsHash);
         } catch (error) {
             console.error('Error uploading file:', error);
         }

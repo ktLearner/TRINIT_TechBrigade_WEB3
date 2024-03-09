@@ -19,31 +19,56 @@ export async function GetPatientProfile (eth) {
 }
 
 export async function IsPatientReg(eth) {
-  let value = await HealthCare(eth, true).checkPatientRegistration();
+  const value = await HealthCare(eth, true).checkPatientRegistration();
+  console.log(value);
   return value;
 }
 
-export async function createHWpRecord (patientId,height,weight,bloodPressure) {
+export async function createHWpRecord (eth, patientId,height,weight,bloodPressure) {
     let org = HealthCare(eth, true)
 
-    const txHash = await org.createHealthRecord(patientId,height,height,weight,bloodPressure)
-    
+    const txHash = await org.createHealthRecord(patientId,height,weight,bloodPressure)
+
 }
-export async function createReport (patientId,ipfsHash) {
+export async function createReport (eth, patientId,ipfsHash) {
     let org = HealthCare(eth, true)
 
-    const txHash = await org.createHealthReport(patientId,ipfsHash)
-    
+    const txHash = await org.addHealthRecord(patientId,ipfsHash)
+
 }
-export async function AddViewer (patientId, address) {
+export async function AddViewer (eth, patientId, address) {
     let org = HealthCare(eth, true)
 
     const txHash = await org.addAuthorizedViewer(patientId, address)
-    
+
 }
-export async function RemoveViewer (patientId, address) {
+export async function RemoveViewer (eth, patientId, address) {
     let org = HealthCare(eth, true)
 
     const txHash = await org.removeAuthorizedViewer(patientId, address)
-    
+
 }
+
+export async function GetPatientId (eth) {
+    let value = await HealthCare(eth, true).getPatientIdByAddress();
+    return value
+}
+
+export async function  RegisHospital(eth,name,type,address,state,district,link) {
+    let org = HealthCare(eth, true)
+
+    const res = await org.registerHospital(name,type,address,state,district,link, {
+        gasLimit: 300000
+    })
+    return res
+}
+
+export async function  HosDetail(eth) {
+    let org = HealthCare(eth, true)
+
+    const res = await org.getHospitalDetailsByAddress()
+    console.log(res);
+    return res
+}
+
+
