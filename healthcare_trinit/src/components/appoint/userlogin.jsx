@@ -1,9 +1,8 @@
-// Home.js
-
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import PatientRegistrationForm from "../../Forms/PatientRegn";
 import UseWallet from "../../../wallet/wallet";
+import Navbar from "./../../components/Navbar/Navbar.jsx"; // Import the Navbar component
 
 
 export default function Home() {
@@ -22,6 +21,7 @@ export default function Home() {
   return (
     <main>
         <div>
+          <Navbar></Navbar>
           <div>
             {wallet == null ? (
               <>

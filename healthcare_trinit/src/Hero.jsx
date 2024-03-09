@@ -2,6 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Hero = () => {
+  function checkUser(){
+    return 6;
+  }
   return (
     <section
       className={`relative w-full mx-auto pd-20`}
