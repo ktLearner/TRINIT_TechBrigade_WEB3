@@ -7,10 +7,6 @@ const App = () => {
     localStorage.getItem("wallet_address")
   );
     return (
-        <div>
-            <Navbar />
-            <Hero />
-        </div>
       <div>
         {/* Navbar */}
         <Navbar setAddress={setAddress}/>
