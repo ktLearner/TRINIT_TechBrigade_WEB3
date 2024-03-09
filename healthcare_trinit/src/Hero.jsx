@@ -89,13 +89,7 @@ const navigate = useNavigate();
                 Book Appointment
               </button>
 
-              <Link
-                className="bg-[#00FFFF] text-black py-2 px-9 rounded-full mr-4"
-                to="profile"
-              >
-                View Profile
-              </Link>
-
+              
               <Link
                 className="bg-[#00FFFF] text-black py-2 px-9 rounded-full mr-4"
                 to="viewers"
