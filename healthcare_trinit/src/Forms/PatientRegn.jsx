@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import UseWallet from "../../wallet/wallet";
+import { CreatePatientProfile } from "../_contract/contract_functions";
 
 function PatientRegistrationForm() {
+  let [wallet, login, logout] = UseWallet();
   const [formData, setFormData] = useState({
     fullName: "",
     dob: "",
@@ -18,9 +21,10 @@ function PatientRegistrationForm() {
     });
   };
 
-  const handleSubmit = (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
     // You can perform form validation or submit the data to an API here
+    let res = await CreatePatientProfile(wallet, formData.fullName, formData.dob, formData.gender, formData.contactNumber, formData.emailAddress, formData.description, window.ethereum);
     console.log(formData);
   };
 

@@ -6,6 +6,7 @@ import CalendarBooking from './components/appoint/datebook'
 import HospitalSelector from './components/Hospitals/Hospital';
 import DepartmentSelection from './components/appoint/department';
 import PhysicalAppointment from './components/appoint/PhysicalAppointment';
+import PatientProfile from './components/profile/patient';
 import "./index.css"
 import {
   createBrowserRouter,
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
     path: "/physical-appointment/calendar/:department",
     element: <CalendarBooking />,
   },
+  {
+    path: '/profile',
+    element: <PatientProfile />
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -62,4 +67,4 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   </RecoilRoot>
 );
 
-reportWebVitals(); 
+reportWebVitals();
