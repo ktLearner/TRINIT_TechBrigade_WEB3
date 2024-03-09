@@ -71,6 +71,22 @@ export async function  HosDetail(eth) {
     return res
 }
 
+export async function  AllHos(eth) {
+    let org = HealthCare(eth, false)
+
+    const res = await org.getAllHospitals()
+    console.log(res);
+    return res
+}
+
+export async function  HosName(eth, id) {
+    let org = HealthCare(eth, true)
+
+    const res = await org.getHospitalDetails(id)
+    console.log(res);
+    return res
+}
+
 export async function  GetHashes(eth,patientId) {
     let org = HealthCare(eth, true)
 
