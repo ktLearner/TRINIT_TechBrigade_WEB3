@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { GetHashes, GetPatientId } from "../_contract/contract_functions";
+import Navbar from "../components/Navbar/Navbar";
 
-function RecordsViewer({ ipfsFiles }) {
-  let ipfsFiles1 = [
-    "QmbdKN3R2jGxvhzae4T6ngdnchXwTA1Jbds6jZmibmL9XU",
-    "QmQzuo8Jg5VV3L1ZdKyj4pADQjf1dxg7tmZoFKCNCVqWja",
-  ];
+function RecordsViewer() {
+  const [hashes, setHashes] = useState([]);
+
+  useEffect(() => {
+    let id = null;
+
+    async function fetchData() {
+      try {
+        id = await GetPatientId(window.ethereum);
+        const data = await GetHashes(window.ethereum, id);
+        setHashes(data);
+      } catch (error) {
+        console.error("Error fetching hashes:", error);
+      }
+    }
+
+    fetchData();
+  }, []);
 
   const openIPFSFile = (ipfsCID) => {
     window.open(`http://gateway.pinata.cloud/ipfs/${ipfsCID}`, "_blank");
@@ -18,7 +33,8 @@ function RecordsViewer({ ipfsFiles }) {
         borderRadius: "5px",
       }}
     >
-      {ipfsFiles1.map((ipfsCID, index) => (
+      <Navbar />
+      {hashes.map((ipfsCID, index) => (
         <button
           key={index}
           className="ipfs-file"
@@ -35,7 +51,7 @@ function RecordsViewer({ ipfsFiles }) {
             cursor: "pointer",
           }}
         >
-          IPFS File {index + 1}
+          Report {index + 1}
         </button>
       ))}
     </div>

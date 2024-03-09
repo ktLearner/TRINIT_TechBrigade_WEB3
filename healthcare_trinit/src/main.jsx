@@ -117,7 +117,7 @@ const router = createBrowserRouter([
   {
     path: '/testing3',
     element: <RecordsViewer />
-  },
+  },  
   {
     path: '/registerHospital',
     element: <HospitalRegistrationForm />
