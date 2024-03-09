@@ -30,6 +30,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AppointmentDetailsComponent from './components/hospitalmanage/appointcalls';
 import HospitalDashboard from './components/hospitalmanage/hospitaldash';
+import HospitalProfile from './components/profile/hospital';
 
 
 const router = createBrowserRouter([
@@ -104,6 +105,10 @@ const router = createBrowserRouter([
   {
     path: "/viewers",
     element: <ViewerPermsForm />,
+  },
+  {
+    path: "/testing",
+    element: <HospitalProfile />,
   },
   {
     path: '/testing2',
