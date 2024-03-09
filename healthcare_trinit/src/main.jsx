@@ -8,6 +8,8 @@ import DepartmentSelection from './components/appoint/department';
 import PhysicalAppointment from './components/appoint/PhysicalAppointment';
 import PatientProfile from './components/profile/patient';
 import ViewerPermsForm from './Forms/ViewersPermsForm';
+import Doc_details from './Forms/doctor_updated';
+
 import "./index.css"
 import {
   createBrowserRouter,
@@ -61,6 +63,10 @@ const router = createBrowserRouter([
     path: "/viewers",
     element: <ViewerPermsForm />,
   },
+  {
+    path: '/testing2',
+    element: <Doc_details />
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
