@@ -24,29 +24,33 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/dashboard",
+    path: "/registerPatient",
     element: <Home />,
   },
   {
-    path: '/dashboard/hospital/:userId',
-    element: <HospitalSelector />
+    path: "/dashboard/hospital/",
+    element: <HospitalSelector />,
   },
   {
-    path: '/appointment/:hospitalName',
-    element: <Appointment />
+    path: "/dashboard/hospital/:userId",
+    element: <HospitalSelector />,
   },
   {
-    path: '/appointment/:hospitalName/physical-appointment',
-    element: <PhysicalAppointment />
+    path: "/appointment/:hospitalName",
+    element: <Appointment />,
   },
   {
-    path: '/physical-appointment/departments',
-    element: <DepartmentSelection />
+    path: "/appointment/:hospitalName/physical-appointment",
+    element: <PhysicalAppointment />,
   },
   {
-    path: '/physical-appointment/calendar/:department',
-    element: <CalendarBooking />
-  }
+    path: "/physical-appointment/departments",
+    element: <DepartmentSelection />,
+  },
+  {
+    path: "/physical-appointment/calendar/:department",
+    element: <CalendarBooking />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
