@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import UseWallet from "../../../wallet/wallet";
-
 export default function Navbar({setAddress}) {
   let [wallet, login, logout] = UseWallet();
 
@@ -22,6 +21,11 @@ export default function Navbar({setAddress}) {
         <div className={styles.container}>
           <div className={styles.navbarCollapse} id="navbarSupportedContent">
             <ul className={styles.navbarNav}>
+            <li className={`${styles.navItem} ${styles.navItemHover}`}>
+                <Link className={styles.navLink} to="/">
+                  Home
+                </Link>
+              </li>
               <li className={`${styles.navItem} ${styles.navItemHover}`}>
                 <Link className={styles.navLink} to="/about">
                   About
@@ -41,6 +45,7 @@ export default function Navbar({setAddress}) {
                 <>
                   <li className={`${styles.navItem} ${styles.navItemHover}`}>
                     <button className={styles.navLink} onClick={customLogout}>
+
                       Disconnect Metamask
                     </button>
                   </li>
@@ -54,3 +59,4 @@ export default function Navbar({setAddress}) {
     </>
   );
 }
+

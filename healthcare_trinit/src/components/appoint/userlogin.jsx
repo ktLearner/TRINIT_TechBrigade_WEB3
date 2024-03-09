@@ -8,22 +8,12 @@ import Navbar from "./../../components/Navbar/Navbar.jsx"; // Import the Navbar 
 export default function Home() {
   const [wallet, userId, login, logout] = UseWallet();
   const navigate = useNavigate();
-
-  const handleDashboardClick = () => {
-    // Assuming you have a userId stored in localStorage
-    if (userId) {
-      navigate(`/dashboard/hospital/${wallet}`);
-    } else {
-      console.error("User ID not found in localStorage.");
-    }
-  };
-
   return (
     <main>
         <div>
           <Navbar></Navbar>
           <div>
-            {/* {wallet == null ? (
+            {wallet == null ? (
               <>
                 <div
                   className="bg-[#00FFFF] text-black py-2 px-9 rounded-full mr-4"
@@ -32,17 +22,11 @@ export default function Home() {
                   Login To Metamask
                 </div>
               </>
-            ) : ( */}
-              {/* <> */}
+            ) : (
+              <>
                 <PatientRegistrationForm />
-                <button
-                  className="bg-[#00FFFF] text-black py-2 px-9 rounded-full mr-4"
-                  onClick={handleDashboardClick}
-                >
-                  Dashboard
-                </button>
-              {/* </> */}
-            {/* )} */}
+              </>
+            )}
           </div>
         </div>
     </main>

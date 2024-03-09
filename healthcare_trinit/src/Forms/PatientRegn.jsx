@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {useNavigate} from "react-router-dom"
 import UseWallet from "../../wallet/wallet";
 import { CreatePatientProfile } from "../_contract/contract_functions";
 
@@ -21,11 +22,18 @@ function PatientRegistrationForm() {
     });
   };
 
+ const navigate = useNavigate()
+
   async function handleSubmit(e) {
     e.preventDefault();
     // You can perform form validation or submit the data to an API here
     let res = await CreatePatientProfile(wallet, formData.fullName, formData.dob, formData.gender, formData.contactNumber, formData.emailAddress, formData.description, window.ethereum);
     console.log(formData);
+    if (formData) {
+      navigate(`/dashboard/hospital/${wallet}`);
+    } else {
+      console.error("User ID not found in localStorage.");
+    }
   };
 
   return (
