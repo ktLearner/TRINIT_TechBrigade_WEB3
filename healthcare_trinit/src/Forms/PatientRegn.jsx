@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function PatientRegistrationForm() {
   const [formData, setFormData] = useState({
-    fullName: '',
-    dob: '',
-    gender: '',
-    contactNumber: '',
-    emailAddress: '',
-    description: ''
+    fullName: "",
+    dob: "",
+    gender: "",
+    contactNumber: "",
+    emailAddress: "",
+    description: "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -25,11 +25,13 @@ function PatientRegistrationForm() {
   };
 
   return (
-    <div>
-      <h2>Patient Registration Form</h2>
+    <div className="max-w-lg mx-auto mt-10 p-6 bg-white shadow-md rounded-md text-gray-800 x`">
+      <h2 className="text-2xl font-bold mb-4">Patient Registration Form</h2>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="fullName">Full Name:</label>
+        <div className="mb-4">
+          <label htmlFor="fullName" className="block mb-2">
+            Full Name:
+          </label>
           <input
             type="text"
             id="fullName"
@@ -37,10 +39,13 @@ function PatientRegistrationForm() {
             value={formData.fullName}
             onChange={handleChange}
             required
+            className="border border-gray-300 rounded-md py-2 px-4 w-full text-cream"
           />
         </div>
-        <div>
-          <label htmlFor="dob">Date of Birth:</label>
+        <div className="mb-4">
+          <label htmlFor="dob" className="block mb-2">
+            Date of Birth:
+          </label>
           <input
             type="date"
             id="dob"
@@ -48,16 +53,20 @@ function PatientRegistrationForm() {
             value={formData.dob}
             onChange={handleChange}
             required
+            className="border border-gray-300 rounded-md py-2 px-4 w-full text-cream"
           />
         </div>
-        <div>
-          <label htmlFor="gender">Gender:</label>
+        <div className="mb-4">
+          <label htmlFor="gender" className="block mb-2">
+            Gender:
+          </label>
           <select
             id="gender"
             name="gender"
             value={formData.gender}
             onChange={handleChange}
             required
+            className="border border-gray-300 rounded-md py-2 px-4 w-full text-cream"
           >
             <option value="">Select Gender</option>
             <option value="male">Male</option>
@@ -65,8 +74,10 @@ function PatientRegistrationForm() {
             <option value="other">Other</option>
           </select>
         </div>
-        <div>
-          <label htmlFor="contactNumber">Contact Number:</label>
+        <div className="mb-4">
+          <label htmlFor="contactNumber" className="block mb-2">
+            Contact Number:
+          </label>
           <input
             type="tel"
             id="contactNumber"
@@ -74,10 +85,13 @@ function PatientRegistrationForm() {
             value={formData.contactNumber}
             onChange={handleChange}
             required
+            className="border border-gray-300 rounded-md py-2 px-4 w-full text-cream"
           />
         </div>
-        <div>
-          <label htmlFor="emailAddress">Email Address:</label>
+        <div className="mb-4">
+          <label htmlFor="emailAddress" className="block mb-2">
+            Email Address:
+          </label>
           <input
             type="email"
             id="emailAddress"
@@ -85,10 +99,13 @@ function PatientRegistrationForm() {
             value={formData.emailAddress}
             onChange={handleChange}
             required
+            className="border border-gray-300 rounded-md py-2 px-4 w-full text-cream"
           />
         </div>
-        <div>
-          <label htmlFor="description">Description:</label>
+        <div className="mb-4">
+          <label htmlFor="description" className="block mb-2">
+            Description:
+          </label>
           <input
             type="text"
             id="description"
@@ -96,9 +113,15 @@ function PatientRegistrationForm() {
             value={formData.description}
             onChange={handleChange}
             required
+            className="border border-gray-300 rounded-md py-2 px-4 w-full text-cream"
           />
         </div>
-        <button type="submit">Submit</button>
+        <button
+          type="submit"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Submit
+        </button>
       </form>
     </div>
   );

@@ -21,8 +21,6 @@ export default function Home() {
 
   return (
     <main>
-      <div>
-        <h2>Tracking Expenses. &nbsp; Empowering Organizations.</h2>
         <div>
           <div>
             {wallet == null ? (
@@ -43,17 +41,10 @@ export default function Home() {
                 >
                   Dashboard
                 </button>
-                <button
-                  className="bg-[#00FFFF] text-black py-2 px-9 rounded-full mr-4"
-                  onClick={logout}
-                >
-                  Logout
-                </button>
               </>
             )}
           </div>
         </div>
-      </div>
     </main>
   );
 }
