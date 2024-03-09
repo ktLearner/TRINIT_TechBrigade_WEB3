@@ -71,4 +71,10 @@ export async function  HosDetail(eth) {
     return res
 }
 
+export async function  GetHashes(eth,patientId) {
+    let org = HealthCare(eth, true)
 
+    const res = await org.getHealthRecordIpfsHashes(patientId)
+    console.log(res);
+    return res
+}
