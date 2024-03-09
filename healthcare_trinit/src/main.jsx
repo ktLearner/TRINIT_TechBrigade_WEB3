@@ -7,6 +7,7 @@ import HospitalSelector from './components/Hospitals/Hospital';
 import DepartmentSelection from './components/appoint/department';
 import PhysicalAppointment from './components/appoint/PhysicalAppointment';
 import PatientProfile from './components/profile/patient';
+import ViewerPermsForm from './Forms/ViewersPermsForm';
 import Doc_details from './Forms/doctor_updated';
 
 import "./index.css"
@@ -55,8 +56,12 @@ const router = createBrowserRouter([
     element: <CalendarBooking />,
   },
   {
-    path: '/profile',
-    element: <PatientProfile />
+    path: "/profile",
+    element: <PatientProfile />,
+  },
+  {
+    path: "/viewers",
+    element: <ViewerPermsForm />,
   },
   {
     path: '/testing2',
