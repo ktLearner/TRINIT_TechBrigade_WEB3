@@ -52,7 +52,7 @@ function PatientProfile() {
         <div className="px-8 py-6">
           <p><em className="text-blue-400">const</em> <span className="text-green-400">Profile</span> <span className="text-pink-500">=</span> <em className="text-blue-400">function</em>()&#123;</p>
           <p>&nbsp;&nbsp;<span className="text-pink-500">return</span> &#123;</p>
-          <p>&nbsp;&nbsp;&nbsp;&nbsp;name: <span className="text-yellow-300">{profile.name}</span>,</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;name: <span className="text-yellow-300">{profile.fullName}</span>,</p>
           <p>&nbsp;&nbsp;&nbsp;&nbsp;dob: <span className="text-yellow-300">{profile.dob}</span>,</p>
           <p>&nbsp;&nbsp;&nbsp;&nbsp;gender: <span className="text-yellow-300">{profile.gender}</span>,</p>
           <p>&nbsp;&nbsp;&nbsp;&nbsp;contactNumber: <span className="text-yellow-300">{profile.contactNumber}</span>,</p>
