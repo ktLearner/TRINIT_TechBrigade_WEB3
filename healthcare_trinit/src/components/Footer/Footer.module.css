@@ -1,0 +1,14 @@
+.footer {
+    /*position: relative;*/
+    background-color: #1b263b; /* Ocean color */
+    text-align: center;
+    height:10vh;
+}
+
+.footerContent {
+  margin-top: 20px;
+  padding: 20px;
+  font-weight: bold;
+  font-size: 15px;
+  color:#ecf5eb;
+}

@@ -1,4 +1,6 @@
 import React from "react";
+import ReactTyped from 'react-typed';
+import ParticlesComponent from "./partcles";
 import { Link , useNavigate } from "react-router-dom";
 import { IsPatientReg } from "./_contract/contract_functions";
 
@@ -8,24 +10,18 @@ const navigate = useNavigate();
         navigate(`/dashboard/hospital/`);
     };
     console.log(address);
-    async function userType(address) {
-      try {
-          let is_p = await IsPatientReg(window.ethereum);
-          console.log("Result:", is_p);
-
-          if (is_p === false || is_p === "false") {
-              return "none";
-          } else {
-              return "patient";
-          }
-      } catch (error) {
-          console.error("Error checking user type:", error);
-          return "error";
-      }
+  function userType(address){
+    if(IsPatientReg(address)){
+      // return "patient";
+      // return "hospital";
+      return "none";
+    }
+    else{
+      return "patient";
+      // return "hospital";
+      // return "none";
+}
   }
-
-
-
   return (
     <section
       className={`relative w-full mx-auto pd-20`}
@@ -36,6 +32,7 @@ const navigate = useNavigate();
         justifyContent: "space-between",
       }}
     >
+    <ParticlesComponent />
       <div
         className={`top-[120px] sm:px-16 px-6 max-w-7xl mx-auto flex flex-row items-start gap-5`}
         style={{ paddingTop: "20vh", paddingBottom: "20vh" }}
@@ -54,8 +51,15 @@ const navigate = useNavigate();
           <p
             className={`font-medium lg:text-[30px] sm:text-[26px] xs:text-[20px] text-[16px] lg:leading-[40px] mt-2 text-white-100`}
           >
-            Dive into the world of <br className="sm:block hidden" /> BlockChain
-            and Web3
+            <ReactTyped strings={
+            ["BLOCKCHAIN",
+            "DECENTRALIZATION","TECHNOLOGY","INNOVATION"
+        ]}
+        typeSpeed={150}
+        backSpeed={100}
+        loop
+        >
+         </ReactTyped>
           </p>
           <br />
           <br />
@@ -74,9 +78,9 @@ const navigate = useNavigate();
           </div>
         </>
       )}
-      {address && address !== "null" && (
+      {true && (
         <div className="flex justify-center mb-8">
-          {true&& (
+          {true && (
             <>
               <button
                 className="bg-[#00FFFF] text-black py-2 px-9 rounded-full mr-4"
