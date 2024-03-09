@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import UseWallet from "../../wallet/wallet";
-import { CreatePatientProfile } from "../_contract/contract_functions";
+import { AddViewer, RemoveViewer } from "../_contract/contract_functions";
 
 function ViewerPermsForm() {
-  let [wallet, login, logout] = UseWallet();
+  let [wallet] = UseWallet();
   const [formData, setFormData] = useState({
     viewerWallet: "",
   });
@@ -18,6 +18,7 @@ function ViewerPermsForm() {
   };
 
   const handleDelete = (index) => {
+    RemoveViewer(wallet, viewers[index]);
     const updatedViewers = [...viewers];
     updatedViewers.splice(index, 1);
     setViewers(updatedViewers);
@@ -29,6 +30,7 @@ function ViewerPermsForm() {
       walletAddress: formData.viewerWallet,
       // Add other data associated with the viewer if needed
     };
+    AddViewer(wallet, newViewer);
     setViewers([...viewers, newViewer]);
     // Reset the form data
     setFormData({
