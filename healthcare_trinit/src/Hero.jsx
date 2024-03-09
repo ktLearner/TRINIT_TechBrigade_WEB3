@@ -1,13 +1,18 @@
 import React from "react";
 import { Link , useNavigate } from "react-router-dom";
+import { IsPatientReg } from "./_contract/contract_functions";
 
 const Hero = ({ address }) => {
 const navigate = useNavigate();
     const handleDashboardClick = () => {
         navigate(`/dashboard/hospital/`);
     };
+    console.log(address);
   function userType(address){
-    return "patient";
+    if(IsPatientReg(address))
+      return "patient";
+    else
+      return "none";
     // return "hospital";
     // return "none";
   }

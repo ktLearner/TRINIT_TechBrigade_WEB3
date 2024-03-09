@@ -18,3 +18,8 @@ export async function GetPatientProfile (eth) {
     console.log(value);
     return value
 }
+
+export async function IsPatientReg(eth) {
+  let value = await HealthCare(eth, true).checkPatientRegistration();
+  return value;
+}
