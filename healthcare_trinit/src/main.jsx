@@ -15,6 +15,7 @@ import PatientProfile from './components/profile/patient';
 import ViewerPermsForm from './Forms/ViewersPermsForm';
 import Doc_details from './Forms/doctor_updated';
 import HospitalRegistrationForm from './Forms/HospitalRegn';
+import RecordsViewer from './Forms/RecordsViewer';
 
 import "./index.css"
 import {
@@ -107,6 +108,10 @@ const router = createBrowserRouter([
   {
     path: '/testing2',
     element: <Doc_details />
+  },
+  {
+    path: '/testing3',
+    element: <RecordsViewer />
   },
   {
     path: '/registerHospital',

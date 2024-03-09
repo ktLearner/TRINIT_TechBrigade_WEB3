@@ -30,7 +30,7 @@ function PatientRegistrationForm() {
     let res = await CreatePatientProfile(wallet, formData.fullName, formData.dob, formData.gender, formData.contactNumber, formData.emailAddress, formData.description, window.ethereum);
     console.log(formData);
     if (formData) {
-      navigate(`/dashboard/hospital/${wallet}`);
+      navigate(`/`);
     } else {
       console.error("User ID not found in localStorage.");
     }

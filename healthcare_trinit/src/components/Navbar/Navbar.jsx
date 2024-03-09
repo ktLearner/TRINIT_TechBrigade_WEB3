@@ -1,9 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link , useNavigate} from "react-router-dom";
 import styles from "./Navbar.module.css";
 import UseWallet from "../../../wallet/wallet";
 export default function Navbar({setAddress}) {
   let [wallet, login, logout] = UseWallet();
+  const navigate = useNavigate();
 
   async function customLogin(){
     await login();
@@ -13,6 +14,7 @@ export default function Navbar({setAddress}) {
   async function customLogout() {
     await logout();
     setAddress(localStorage.getItem("wallet_address"));
+    navigate(`/`);
   }
 
   return (
