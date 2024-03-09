@@ -35,4 +35,15 @@ export async function createReport (patientId,ipfsHash) {
     const txHash = await org.createHealthReport(patientId,ipfsHash)
     
 }
+export async function AddViewer (patientId, address) {
+    let org = HealthCare(eth, true)
 
+    const txHash = await org.addAuthorizedViewer(patientId, address)
+    
+}
+export async function RemoveViewer (patientId, address) {
+    let org = HealthCare(eth, true)
+
+    const txHash = await org.removeAuthorizedViewer(patientId, address)
+    
+}
