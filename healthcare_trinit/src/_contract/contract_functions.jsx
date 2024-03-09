@@ -22,3 +22,17 @@ export async function IsPatientReg(eth) {
   let value = await HealthCare(eth, true).checkPatientRegistration();
   return value;
 }
+
+export async function createHWpRecord (patientId,height,weight,bloodPressure) {
+    let org = HealthCare(eth, true)
+
+    const txHash = await org.createHealthRecord(patientId,height,height,weight,bloodPressure)
+    
+}
+export async function createReport (patientId,ipfsHash) {
+    let org = HealthCare(eth, true)
+
+    const txHash = await org.createHealthReport(patientId,ipfsHash)
+    
+}
+
