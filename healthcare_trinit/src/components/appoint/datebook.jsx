@@ -141,6 +141,9 @@ const CalendarBooking = () => {
 
 export default CalendarBooking;*/
 
+// ... (previous imports)
+
+
 import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Calendar from 'react-calendar';
@@ -167,9 +170,7 @@ const CalendarBooking = () => {
       // Display a confirmation popup using react-toastify
       const confirmationToastId = toast.info(
         <div>
-          <p style={{ color: 'dark' }}>{`Hospital: Mercy General Hospital`}</p>
-          <p style={{ color: 'dark' }}>{`Department: ${department}`}</p>
-          <p style={{ color: 'dark' }}>{`Date: ${date.toISOString().split('T')[0]}`}</p>
+          <p className="text-black">{`Date: ${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`}</p>
           <button
             onClick={() => {
               // Handle booking confirmation logic here
@@ -179,12 +180,23 @@ const CalendarBooking = () => {
               // Dismiss the confirmation toast after booking is confirmed
               toast.dismiss(confirmationToastId);
             }}
+            className="bg-green-500 text-white px-4 py-2 rounded-md mr-2"
           >
             Confirm Booking
           </button>
+          <button
+            onClick={() => {
+              // Handle cancel booking logic here
+              toast.dismiss(confirmationToastId);
+              toast.success('Booking canceled!');
+            }}
+            className="bg-red-500 text-white px-4 py-2 rounded-md"
+          >
+            Cancel Booking
+          </button>
         </div>,
         {
-          position: 'top-center',
+          position: 'bottom-left',
           autoClose: false,
           hideProgressBar: true,
           closeOnClick: false,
@@ -197,11 +209,11 @@ const CalendarBooking = () => {
       // Display appropriate toast message for full or holiday slots
       const toastMessage =
         status === 'full'
-          ? `All slots are full for ${department} on ${date.toISOString().split('T')[0]}`
+          ? `All slots are full on ${date.toISOString().split('T')[0]}`
           : `Hospital closed on ${date.toISOString().split('T')[0]}`;
 
       toast.error(toastMessage, {
-        position: 'top-center',
+        position: 'bottom-right',
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -214,15 +226,21 @@ const CalendarBooking = () => {
 
   const isDateBooked = (date) => bookedDates.includes(date.toISOString().split('T')[0]);
 
+  const handleCancelBooking = () => {
+    // Handle cancel booking logic here
+    setBookedDates([]); // Clear booked dates
+    toast.success('Booking canceled!');
+  };
+
   return (
-    <div className="container mx-auto mt-8">
-      <h1 className="text-2xl font-bold">{department} - Calendar Booking</h1>
-      <div className="flex justify-between mb-4">
-        <Link to={`/physical-appointment/departments`} className="bg-blue-500 text-white px-4 py-2 rounded-md">
-          Go Back
-        </Link>
-        <div>
-          <button onClick={() => setSelectedDate(new Date())}>Today</button>
+    <div className = "bg-[#1b263b] ">
+    <div className="container mx-auto mt-8 text-black">
+      <h1 className="text-2xl font-bold mb-4 text-white flex justify-center">{department} - Slot Booking</h1>
+      <div className="flex justify-center mb-4">
+        <div className="text-center">
+          <button onClick={() => setSelectedDate(new Date())} className="bg-blue-500 text-white px-4 py-2 rounded-md mb-2">
+            Today
+          </button>
           <Calendar
             onChange={(date) => setSelectedDate(date)}
             value={selectedDate}
@@ -231,14 +249,15 @@ const CalendarBooking = () => {
             prevLabel="«"
             nextLabel="»"
             next2Label="»»"
-            tileContent={({ date, view }) => {
+            className="mb-4"
+            tileContent={({ date }) => {
               const currentDate = date.toISOString().split('T')[0];
               const status = calendarData.find((item) => item.date === currentDate)?.status || 'available';
 
               return (
                 <div
                   className={`calendar-tile ${
-                    status === 'available' ? (isDateBooked(date) ? 'bg-red-300 dark' : 'bg-green-300 cursor-pointer dark') : status === 'full' ? 'bg-red-300 dark' : 'bg-yellow-300 dark'
+                    status === 'available' ? (isDateBooked(date) ? 'bg-red-300 cursor-not-allowed' : 'bg-green-300 cursor-pointer') : status === 'full' ? 'bg-red-300' : 'bg-yellow-300'
                   }`}
                   onClick={() => handleDateClick(date, status)}
                 >
@@ -247,13 +266,11 @@ const CalendarBooking = () => {
               );
             }}
           />
+         
         </div>
       </div>
-    </div>
+    </div></div>
   );
 };
 
 export default CalendarBooking;
-
-
-

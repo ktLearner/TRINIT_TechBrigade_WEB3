@@ -11,11 +11,9 @@ const HospitalDashboard = () => {
         <Link to="/alter-doctors" className="bg-blue-500 text-white py-4 px-6 rounded-full">
           Doctors
         </Link>
-
         <Link to="/alter-departments" className="bg-blue-500 text-white py-4 px-6 rounded-full">
           Departments
         </Link>
-
         <Link to="/view-appointments" className="bg-blue-500 text-white py-4 px-6 rounded-full">
           View Appointments
         </Link>
