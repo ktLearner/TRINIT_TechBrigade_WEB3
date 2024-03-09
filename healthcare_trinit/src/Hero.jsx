@@ -1,9 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
 
-const Hero = () => {
-  function checkUser(){
-    return 6;
+const Hero = ({ address }) => {
+const navigate = useNavigate();
+    const handleDashboardClick = () => {
+        navigate(`/dashboard/hospital/`);
+    };
+  function userType(address){
+    return "patient";
+    // return "hospital";
+    // return "none";
   }
   return (
     <section
@@ -33,8 +39,8 @@ const Hero = () => {
           <p
             className={`font-medium lg:text-[30px] sm:text-[26px] xs:text-[20px] text-[16px] lg:leading-[40px] mt-2 text-white-100`}
           >
-            Dive into the world of <br className="sm:block hidden" />
-            BlockChain and Web3
+            Dive into the world of <br className="sm:block hidden" /> BlockChain
+            and Web3
           </p>
           <br />
           <br />
@@ -42,17 +48,62 @@ const Hero = () => {
       </div>
 
       {/* Added Buttons */}
-      <div className="flex justify-center mb-8">
-        <Link
-          className="bg-[#00FFFF] text-black py-2 px-9 rounded-full mr-4"
-          to="dashboard"
-        >
-          Patient
-        </Link>
-        <button className="bg-[#00FFFF] text-black py-2 px-9 rounded-full">
-          Hospital
-        </button>
-      </div>
+      {(address == null || address === "null") && (
+        <>
+          <div className="flex justify-center mb-8">
+            <button
+              className="bg-[#00FFFF] text-black py-2 px-9 rounded-full mr-4"
+              onClick={handleDashboardClick}
+            >
+              View Hospitals
+            </button>
+          </div>
+        </>
+      )}
+      {address && address !== "null" && (
+        <div className="flex justify-center mb-8">
+          <button
+            className="bg-[#00FFFF] text-black py-2 px-9 rounded-full mr-4"
+            onClick={handleDashboardClick}
+          >
+            View Hospitals
+          </button>
+          {userType(address) == "patient" && (
+            <>
+              <Link
+                className="bg-[#00FFFF] text-black py-2 px-9 rounded-full mr-4"
+                to="bookAppointment"
+              >
+                Book Appointment
+              </Link>
+            </>
+          )}
+          {userType(address) == "hospital" && (
+            <>
+              <button className="bg-[#00FFFF] text-black py-2 px-9 rounded-full">
+                Hospital
+              </button>
+            </>
+          )}
+          {userType(address) == "none" && (
+            <>
+              <Link
+                className="bg-[#00FFFF] text-black py-2 px-9 rounded-full mr-4"
+                to="registerPatient"
+              >
+                Register as Patient
+              </Link>
+
+              <Link
+                className="bg-[#00FFFF] text-black py-2 px-9 rounded-full mr-4"
+                to="registerHospital"
+              >
+                Register as Hospital
+              </Link>
+            </>
+          )}
+        </div>
+      )}
     </section>
   );
 };
