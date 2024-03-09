@@ -9,12 +9,16 @@ const navigate = useNavigate();
     };
     console.log(address);
   function userType(address){
-    if(IsPatientReg(address))
+    if(IsPatientReg(address)){
       return "patient";
-    else
+      // return "hospital";
+      // return "none";
+    }
+    else{
+      // return "patient";
+      // return "hospital";
       return "none";
-    // return "hospital";
-    // return "none";
+    }
   }
   return (
     <section
