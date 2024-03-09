@@ -24,7 +24,7 @@ const Hero = () => {
 
       {/* Added Buttons */}
       <div className="absolute inset-x-0 bottom-8 flex justify-center">
-        <Link className="bg-[#00FFFF] text-black py-2 px-9 rounded-full mr-4" to ="hospital">Patient</Link>
+        <Link className="bg-[#00FFFF] text-black py-2 px-9 rounded-full mr-4" to ="dashboard">Patient</Link>
         <button className="bg-[#00FFFF] text-black py-2 px-9 rounded-full" >Hospital</button>
       </div>
         </section>
