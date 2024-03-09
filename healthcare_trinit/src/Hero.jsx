@@ -10,14 +10,14 @@ const navigate = useNavigate();
     console.log(address);
   function userType(address){
     if(IsPatientReg(address)){
-      return "patient";
-      // return "hospital";
-      // return "none";
-    }
-    else{
       // return "patient";
       // return "hospital";
       return "none";
+    }
+    else{
+      return "patient";
+      // return "hospital";
+      // return "none";
     }
   }
   return (
