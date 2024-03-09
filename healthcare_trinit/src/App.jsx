@@ -3,6 +3,7 @@ import HospitalRegn from './Forms/HospitalRegn'; // Import the HospitalRegn comp
 import PatientRegn from './Forms/PatientRegn'; // Import the PatientRegn component
 import AppointmentBook from './Forms/Appointment'; // Import the AppointmentBookingForm component
 import UploadForm from "./Forms/UploadForm";
+import Home from './Forms/connect_wallet';
 
 const App = () => {
     const [userType, setUserType] = useState(null); // State to track user selection
@@ -23,6 +24,7 @@ const App = () => {
         } else {
             return (
               <div>
+                <Home />
                 <UploadForm />
                 <h2>Select User Type</h2>
                 <button onClick={() => handleUserSelect("hospital")}>
