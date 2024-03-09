@@ -77,7 +77,7 @@ function PatientProfile() {
         className="bg-gray-900  pl-4 py-2 px-9 rounded-full mr-4"
         to="/user_profile"
         >
-        <span class="text-red-500">Register</span> <span class="text-yellow-300">as</span> <span class ="text-green-500">Hospital</span>   
+        <span class="text-red-500">Update</span> <span class="text-yellow-300">Medical</span> <span class ="text-green-500">Details</span>   
       </Link>
         </div>
       </div>
