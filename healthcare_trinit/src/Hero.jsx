@@ -52,7 +52,6 @@ const navigate = useNavigate();
         </div>
       </div>
 
-      {/* Added Buttons */}
       {(address == null || address === "null") && (
         <>
           <div className="flex justify-center mb-8">
@@ -67,26 +66,27 @@ const navigate = useNavigate();
       )}
       {address && address !== "null" && (
         <div className="flex justify-center mb-8">
-          <button
-            className="bg-[#00FFFF] text-black py-2 px-9 rounded-full mr-4"
-            onClick={handleDashboardClick}
-          >
-            View Hospitals
-          </button>
           {userType(address) == "patient" && (
             <>
-              <Link
+              <button
                 className="bg-[#00FFFF] text-black py-2 px-9 rounded-full mr-4"
-                to="bookAppointment"
+                onClick={handleDashboardClick}
               >
                 Book Appointment
-              </Link>
+              </button>
 
               <Link
                 className="bg-[#00FFFF] text-black py-2 px-9 rounded-full mr-4"
                 to="profile"
               >
                 View Profile
+              </Link>
+
+              <Link
+                className="bg-[#00FFFF] text-black py-2 px-9 rounded-full mr-4"
+                to="viewers"
+              >
+                Alter Viewers
               </Link>
             </>
           )}

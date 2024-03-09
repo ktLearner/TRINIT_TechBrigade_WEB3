@@ -7,6 +7,7 @@ import HospitalSelector from './components/Hospitals/Hospital';
 import DepartmentSelection from './components/appoint/department';
 import PhysicalAppointment from './components/appoint/PhysicalAppointment';
 import PatientProfile from './components/profile/patient';
+import ViewerPermsForm from './Forms/ViewersPermsForm';
 import "./index.css"
 import {
   createBrowserRouter,
@@ -53,9 +54,13 @@ const router = createBrowserRouter([
     element: <CalendarBooking />,
   },
   {
-    path: '/profile',
-    element: <PatientProfile />
-  }
+    path: "/profile",
+    element: <PatientProfile />,
+  },
+  {
+    path: "/viewers",
+    element: <ViewerPermsForm />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
