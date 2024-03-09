@@ -12,3 +12,9 @@ export async function CreatePatientProfile (wallet, name, dob, gender, contact, 
     const txHash = await org.registerPatient(name, 10, dob, gender, contact, email, des)
     return txHash
 }
+
+export async function GetPatientProfile (eth) {
+    let value = await HealthCare(eth, true).getPatientDetailsByAddress()
+    console.log(value);
+    return value
+}
