@@ -2,9 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import UseWallet from "../../../wallet/wallet";
-
-export default function Navbar() {
+export default function Navbar({setAddress}) {
   let [wallet, login, logout] = UseWallet();
+
+  async function customLogin(){
+    await login();
+    setAddress(localStorage.getItem("wallet_address"))
+  }
+
+  async function customLogout() {
+    await logout();
+    setAddress(localStorage.getItem("wallet_address"));
+  }
 
   return (
     <>
@@ -26,7 +35,7 @@ export default function Navbar() {
               {(wallet == null || wallet == "null") && (
                 <>
                   <li className={`${styles.navItem} ${styles.navItemHover}`}>
-                    <button className={styles.navLink} onClick={login}>
+                    <button className={styles.navLink} onClick={customLogin}>
                       Connect to Metamask
                     </button>
                   </li>
@@ -35,7 +44,8 @@ export default function Navbar() {
               {wallet != null && wallet != "null" && (
                 <>
                   <li className={`${styles.navItem} ${styles.navItemHover}`}>
-                    <button className={styles.navLink} onClick={logout}>
+                    <button className={styles.navLink} onClick={customLogout}>
+
                       Disconnect Metamask
                     </button>
                   </li>
@@ -49,3 +59,4 @@ export default function Navbar() {
     </>
   );
 }
+

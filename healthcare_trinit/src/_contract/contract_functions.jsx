@@ -8,7 +8,6 @@ export async function GetPatientDetails (eth, id) {
 
 export async function CreatePatientProfile (wallet, name, dob, gender, contact, email, des, eth) {
     let org = HealthCare(eth, true)
-
     const txHash = await org.registerPatient(name, 10, dob, gender, contact, email, des)
     return txHash
 }
@@ -17,4 +16,9 @@ export async function GetPatientProfile (eth) {
     let value = await HealthCare(eth, true).getPatientDetailsByAddress()
     console.log(value);
     return value
+}
+
+export async function IsPatientReg(eth) {
+  let value = await HealthCare(eth, true).checkPatientRegistration();
+  return value;
 }

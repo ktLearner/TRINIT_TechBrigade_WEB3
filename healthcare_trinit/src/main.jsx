@@ -11,6 +11,9 @@ import HomeHospital from './components/hospitalmanage/hospitallogin';
 import ViewAppointmentsComponent from './components/hospitalmanage/viewappoints';
 import UploadPdfReportComponent from './components/hospitalmanage/reports';
 import PhysicalAppointment from './components/appoint/PhysicalAppointment';
+import PatientProfile from './components/profile/patient';
+import ViewerPermsForm from './Forms/ViewersPermsForm';
+import Doc_details from './Forms/doctor_updated';
 
 import "./index.css"
 import {
@@ -65,28 +68,44 @@ const router = createBrowserRouter([
     element: <HomeHospital />,
   },
   {
-    path: "/dashboard",
+    path: "/registerPatient",
     element: <Home />,
   },
   {
-    path: '/dashboard/hospital/:userId',
-    element: <HospitalSelector />
+    path: "/dashboard/hospital/",
+    element: <HospitalSelector />,
   },
   {
-    path: '/appointment/:hospitalName',
-    element: <Appointment />
+    path: "/dashboard/hospital/:userId",
+    element: <HospitalSelector />,
   },
   {
-    path: '/appointment/:hospitalName/physical-appointment',
-    element: <PhysicalAppointment />
+    path: "/appointment/:hospitalName",
+    element: <Appointment />,
   },
   {
-    path: '/physical-appointment/departments',
-    element: <DepartmentSelection />
+    path: "/appointment/:hospitalName/physical-appointment",
+    element: <PhysicalAppointment />,
   },
   {
-    path: '/physical-appointment/calendar/:department',
-    element: <CalendarBooking />
+    path: "/physical-appointment/departments",
+    element: <DepartmentSelection />,
+  },
+  {
+    path: "/physical-appointment/calendar/:department",
+    element: <CalendarBooking />,
+  },
+  {
+    path: "/profile",
+    element: <PatientProfile />,
+  },
+  {
+    path: "/viewers",
+    element: <ViewerPermsForm />,
+  },
+  {
+    path: '/testing2',
+    element: <Doc_details />
   }
 ]);
 
@@ -99,4 +118,4 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   </RecoilRoot>
 );
 
-reportWebVitals(); 
+reportWebVitals();
