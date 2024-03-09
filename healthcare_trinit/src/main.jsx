@@ -7,6 +7,8 @@ import HospitalSelector from './components/Hospitals/Hospital';
 import DepartmentSelection from './components/appoint/department';
 import PhysicalAppointment from './components/appoint/PhysicalAppointment';
 import PatientProfile from './components/profile/patient';
+import Doc_details from './Forms/doctor_updated';
+
 import "./index.css"
 import {
   createBrowserRouter,
@@ -55,6 +57,10 @@ const router = createBrowserRouter([
   {
     path: '/profile',
     element: <PatientProfile />
+  },
+  {
+    path: '/testing2',
+    element: <Doc_details />
   }
 ]);
 
