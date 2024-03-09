@@ -107,11 +107,11 @@ const router = createBrowserRouter([
     element: <ViewerPermsForm />,
   },
   {
-    path: "/profile",
+    path: "/h_profile",
     element: <HospitalProfile />,
   },
   {
-    path: '/user_profile',
+    path: '/user_profile_update',
     element: <Doc_details />
   },
   {

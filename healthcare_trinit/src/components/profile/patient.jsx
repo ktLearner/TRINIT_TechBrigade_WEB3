@@ -75,7 +75,7 @@ function PatientProfile() {
         <div class ="pl-20">
       <Link
         className="bg-gray-900  pl-4 py-2 px-9 rounded-full mr-4"
-        to="/user_profile"
+        to="/user_profile_update"
         >
         <span class="text-red-500">Update</span> <span class="text-yellow-300">Medical</span> <span class ="text-green-500">Details</span>   
       </Link>
