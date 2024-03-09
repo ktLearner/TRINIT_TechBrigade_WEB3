@@ -40,50 +40,59 @@ const HospitalSelector = () => {
 
 
   const filteredHospitals = hospitalList.filter((hospital) =>
-  hospital.toLowerCase().includes(searchTerm.toLowerCase())
-);
+    hospital.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-const shuffleHospitals = () => {
-  const shuffledList = [...hospitalList].sort(() => Math.random() - 0.5);
-  setHospitalList(shuffledList);
-};
+  const shuffleHospitals = () => {
+    const shuffledList = [...hospitalList].sort(() => Math.random() - 0.5);
+    setHospitalList(shuffledList);
+  };
 
-return (
-  <div className="container mx-auto mt-8">
-    <input
-      type="text"
-      placeholder="Search Hospital"
-      className="p-2 border rounded-md w-full mb-4"
-      value={searchTerm}
-      onChange={(e) => setSearchTerm(e.target.value)}
-    />
-
-    <div className="flex items-center justify-between mb-4">
-      <p className="text-lg font-bold">Hospital List</p>
-      <button
-        className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none"
-        onClick={shuffleHospitals}
-      >
-        Shuffle
-      </button>
+  return (
+    <div className="container mx-auto mt-8">
+      <div className="px-8 py-6">
+        <div className="text-center"> {/* Wrapping the paragraph in a div and applying text-center class */}
+          <p className={`font-medium lg:text-[30px] sm:text-[26px] xs:text-[20px] text-[16px] lg:leading-[40px] mt-2 text-white-100`}>Hospital List</p>
+        </div>
+      </div>
+      <input
+        type="text"
+        placeholder="Search Hospital"
+        className="p-2 border rounded-md w-full mb-4"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      
+      <div className="flex items-center mr-5 justify-between ml-5 mb-4">
+      <div></div> {/* Add an empty div to fill the space on the left */}
+      <div>
+        <button
+          className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded ml-5"
+          onClick={shuffleHospitals}
+        >
+          Shuffle
+        </button>
+      </div>
     </div>
+      <div className="container  mx-10 mt-8">
 
-    <div className="grid grid-cols-2 gap-4">
-      {filteredHospitals.map((hospital, index) => (
-        <Link to={`/appointment/${encodeURIComponent(hospital)}`} key={index}>
-          <button
-            className={classNames(
-              'p-4 border rounded-md hover:bg-black-100 focus:outline-none',
-              'bg-blue-500 text-white' 
-            )}
-          >
-            {hospital}
-          </button>
-        </Link>
-      ))}
+      <div className="px-8 py-6">
+          <div className="grid grid-cols-2 gap-4">
+            {filteredHospitals.map((hospital, index) => (
+              <Link to={`/appointment/${encodeURIComponent(hospital)}`} key={index}>
+                <button
+                  className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded justify-self-end" // Added justify-self-end class to shift the button to the right
+                >
+                  {hospital}
+                </button>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+      </div>
     </div>
-  </div>
-);
+  );
 };
 
 export default HospitalSelector;
