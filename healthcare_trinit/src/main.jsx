@@ -28,7 +28,7 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: '/dashboard/hospital',
+    path: '/dashboard/hospital/:userId',
     element: <HospitalSelector />
   },
   {

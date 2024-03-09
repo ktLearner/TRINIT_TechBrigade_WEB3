@@ -32,3 +32,4 @@ export default function UseWallet () {
     }
     return [ address, login, logout ]
 }
+
