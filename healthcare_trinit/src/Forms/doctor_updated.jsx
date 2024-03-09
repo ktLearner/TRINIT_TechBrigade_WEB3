@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import UploadForm from './UploadForm'; 
+import { createHWpRecord } from "../_contract/contract_functions";
 
 function doc_details() {
 
     const [bp, setbp] = useState('');
     const [weight, setweight] = useState('');
     const [height, setheight] = useState('');
-    const [medicine, setMedicine] = useState('');
 
 
     const handleSubmit = (event) => {
         event.preventDefault();
         // Here you can perform any action with the form data, such as sending it to a server
-        console.log('Form submitted:', { bp, weight, height, medicine });
+        createHWpRecord( "user_id",bp, weight, height );
         // Clear the form fields after submission
         setbp('');
         setheight('');
-        setMedicine('');
+        setweight('');
     };
     return (
         <div class="container mx-auto mt-8">
@@ -68,7 +68,6 @@ function doc_details() {
                
                 
 
-                <UploadForm />
 
                 
                 
@@ -82,6 +81,9 @@ function doc_details() {
                         </button>
                     </div>
                 </div>
+                
+                <UploadForm />
+
             </form>
         </div>
     </div>

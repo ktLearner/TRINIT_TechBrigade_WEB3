@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { createReport } from "../_contract/contract_functions";
 
 // Hardcode Pinata API key and secret (not recommended for production)
 // const PINATA_API_KEY = process.env.REACT_APP_PINATA_API_KEY;
@@ -39,7 +40,7 @@ const UploadForm = () => {
             });
 
             const { IpfsHash } = response.data;
-            setUploadedCID(IpfsHash);
+            await createReport("user_value",IpfsHash);
         } catch (error) {
             console.error('Error uploading file:', error);
         }
