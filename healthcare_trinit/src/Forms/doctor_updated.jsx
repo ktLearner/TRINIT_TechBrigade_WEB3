@@ -1,104 +1,117 @@
-import React, { useState, useEffect } from 'react';
-import UploadForm from './UploadForm';
+import React, { useState, useEffect } from "react";
+import UploadForm from "./UploadForm";
 import { createHWpRecord } from "../_contract/contract_functions";
-import { GetPatientId } from '../_contract/contract_functions';
+import { GetPatientId } from "../_contract/contract_functions";
+import Navbar from "../components/Navbar/Navbar";
+import { Link, useNavigate } from "react-router-dom";
 
-function doc_details() {
+function DocDetails() {
+  const [bp, setBp] = useState("");
+  const [weight, setWeight] = useState("");
+  const [height, setHeight] = useState("");
+  const [id, setId] = useState(null);
 
-    const [bp, setbp] = useState('');
-    const [weight, setweight] = useState('');
-    const [height, setheight] = useState('');
-    const [id, setId] = useState(null);
+  const navigate = useNavigate();
+  const handleClicker = () => {
+    navigate(`/viewReports/`);
+  };
 
-    useEffect(() => {
-        async function getid(){
-            let id = await GetPatientId(window.ethereum);
-            setId(id);
-        }
-        getid();
-    }, [])
+  useEffect(() => {
+    async function getid() {
+      let id = await GetPatientId(window.ethereum);
+      setId(id);
+    }
+    getid();
+  }, []);
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    createHWpRecord(window.ethereum, id, bp, weight, height);
+    setBp("");
+    setHeight("");
+    setWeight("");
+  };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        // Here you can perform any action with the form data, such as sending it to a server
-        createHWpRecord(window.ethereum, id, bp, weight, height );
-        // Clear the form fields after submission
-        setbp('');
-        setheight('');
-        setweight('');
-    };
-    return (
-        <div class="container mx-auto mt-8">
-                <h2 class="text-2xl ml-7 font-bold mb-4">Update Details</h2>
+  return (
+    <>
+      <Navbar />
+      <div className="container flex justify-center mx-auto mt-8">
+        <div className="max-w-lg mx-auto px-4">
+          <h2 className="text-2xl font-bold mb-4">Update Details</h2>
 
-        <div>
-            <form class="w-full max-w-lg" onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
+            <div className="flex items-center mb-4">
+              <label
+                className="w-1/3 text-gray-500 font-bold pr-4"
+                htmlFor="weight"
+              >
+                Weight :
+              </label>
+              <input
+                value={weight}
+                onChange={(e) => setWeight(e.target.value)}
+                className="w-2/3 bg-gray-200 border border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                id="weight"
+                type="text"
+              />
+            </div>
 
-                <div class="md:flex md:items-center mb-4">
-                    <div class="md:w-1/3">
-                        <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
-                            weight
-                        </label>
-                    </div>
-                    <div class="md:w-2/3">
-                        <input
-                            value={weight} onChange={(e) => setweight(e.target.value)}
-                            class="bg-gray-200 appearance-none border border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 mb-4" id="inline-full-name" type="text" />
-                    </div>
-                </div>
-                <div class="md:flex md:items-center mb-4">
-                    <div class="md:w-1/3">
-                        <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
-                            height
-                        </label>
-                    </div>
-                    <div class="md:w-2/3">
-                        <input
-                            value={height} onChange={(e) => setheight(e.target.value)}
-                            class="bg-gray-200 appearance-none border border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 mb-4" id="inline-full-name" type="text" />
-                    </div>
-                </div>
+            <div className="flex items-center mb-4">
+              <label
+                className="w-1/3 text-gray-500 font-bold pr-4"
+                htmlFor="height"
+              >
+                Height :
+              </label>
+              <input
+                value={height}
+                onChange={(e) => setHeight(e.target.value)}
+                className="w-2/3 bg-gray-200 border border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                id="height"
+                type="text"
+              />
+            </div>
 
-                <div class="flex flex-wrap -mx-3 mb-4">
-                    <div class="md:w-1/3">
-                        <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
-                            bp
-                        </label>
-                    </div>
-                    <div class="md:w-2/3">
-                        <input
-                            id="dob"
-                            name="dob"
-                            type='text'
-                            value={bp} onChange={(e) => setbp(e.target.value)}
-                            class="bg-gray-200 appearance-none border border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 mb-4"   />
-                    </div>
-                </div>
+            <div className="flex items-center mb-4">
+              <label
+                className="w-1/3 text-gray-500 font-bold pr-4"
+                htmlFor="bp"
+              >
+                B.P. :
+              </label>
+              <input
+                id="bp"
+                name="bp"
+                type="text"
+                value={bp}
+                onChange={(e) => setBp(e.target.value)}
+                className="w-2/3 bg-gray-200 border border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+              />
+            </div>
 
-
-
-
-
-
-                <div class="md:flex md:items-center">
-                    <div class="md:w-2/4"></div>
-                    <div class="">
-                        <button
-                            class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
-                            type="Submit">
-                            Submit
-                        </button>
-                    </div>
-                </div>
-
-                <UploadForm />
-
-            </form>
+            <div className="flex justify-center">
+              <button
+                className="bg-purple-500 hover:bg-purple-400 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="Submit"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
         </div>
-    </div>
 
-    )
+        <div className="mt-8">
+          <UploadForm />
+          <button
+            className="bg-[#00FFFF] text-black py-2 px-9 rounded-full mr-4"
+            onClick={handleClicker}
+          >
+            View Reports
+          </button>
+        </div>
+      </div>
+    </>
+  );
 }
 
-export default doc_details;
+export default DocDetails;

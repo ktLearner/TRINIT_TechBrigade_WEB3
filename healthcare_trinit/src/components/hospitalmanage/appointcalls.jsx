@@ -101,12 +101,6 @@ const AppointmentDetailsComponent = () => {
 
       <div className="flex space-x-4">
         <Link className="bbg-[#00FFFF] text-black py-2 px-9 rounded-full mr-4" to={`/prescription/${id}`}>PRESCRIPTION</Link>
-
-        {appointmentDetails && (
-          <Link to={`/patient/${patientId}`} className="bg-[#00FFFF] text-black py-2 px-9 rounded-full mr-4">
-            TRACK PATIENT
-          </Link>
-        )}
       </div>
     </div>
   );

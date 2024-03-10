@@ -1,13 +1,22 @@
-import React, { useState } from "react";
-import UseWallet from "../../wallet/wallet";
-import { AddViewer, RemoveViewer } from "../_contract/contract_functions";
+import React, { useEffect, useState } from "react";
+import {GetPatientId, AddViewer, RemoveViewer } from "../_contract/contract_functions";
 
 function ViewerPermsForm() {
-  let [wallet] = UseWallet();
+
   const [formData, setFormData] = useState({
     viewerWallet: "",
   });
   const [viewers, setViewers] = useState([]);
+  const [id, setId] = useState('');
+
+  useEffect(() => {
+    async function getid(){
+        let id = await GetPatientId(window.ethereum);
+        setId(id);
+    }
+    getid();
+}, [])
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,8 +26,8 @@ function ViewerPermsForm() {
     });
   };
 
-  const handleDelete = (index) => {
-    RemoveViewer(window.ethereum, wallet, viewers[index]);
+  const handleDelete = async(index) => {
+    await RemoveViewer(window.ethereum, id, viewers[index]);
     const updatedViewers = [...viewers];
     updatedViewers.splice(index, 1);
     setViewers(updatedViewers);
@@ -30,8 +39,9 @@ function ViewerPermsForm() {
       walletAddress: formData.viewerWallet,
       // Add other data associated with the viewer if needed
     };
-    AddViewer(window.ethereum, wallet, newViewer);
-    setViewers([...viewers, newViewer]);
+
+    await AddViewer(window.ethereum, id, formData.viewerWallet);
+     setViewers([...viewers, newViewer]);
     // Reset the form data
     setFormData({
       viewerWallet: "",

@@ -1,26 +1,21 @@
 import React from "react";
-import ReactTyped from 'react-typed';
+import ReactTyped from "react-typed";
 import ParticlesComponent from "./partcles";
-import { Link , useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { IsPatientReg } from "./_contract/contract_functions";
 
 const Hero = ({ address }) => {
-const navigate = useNavigate();
-    const handleDashboardClick = () => {
-        navigate(`/dashboard/hospital/`);
-    };
-    console.log(address);
-  function userType(address){
-    if(IsPatientReg(address)){
+  console.log(address);
+  function userType(address) {
+    if (IsPatientReg(address)) {
+      return "patient";
+      // return "hospital";
+      //return "none";
+    } else {
       // return "patient";
       // return "hospital";
       return "none";
     }
-    else{
-      return "patient";
-      // return "hospital";
-      // return "none";
-}
   }
   return (
     <section
@@ -32,7 +27,7 @@ const navigate = useNavigate();
         justifyContent: "space-between",
       }}
     >
-    <ParticlesComponent />
+      <ParticlesComponent />
       <div
         className={`top-[120px] sm:px-16 px-6 max-w-7xl mx-auto flex flex-row items-start gap-5`}
         style={{ paddingTop: "20vh", paddingBottom: "20vh" }}
@@ -51,15 +46,17 @@ const navigate = useNavigate();
           <p
             className={`font-medium lg:text-[30px] sm:text-[26px] xs:text-[20px] text-[16px] lg:leading-[40px] mt-2 text-white-100`}
           >
-            <ReactTyped strings={
-            ["BLOCKCHAIN",
-            "DECENTRALIZATION","TECHNOLOGY","INNOVATION"
-        ]}
-        typeSpeed={150}
-        backSpeed={100}
-        loop
-        >
-         </ReactTyped>
+            <ReactTyped
+              strings={[
+                "BLOCKCHAIN",
+                "DECENTRALIZATION",
+                "TECHNOLOGY",
+                "INNOVATION",
+              ]}
+              typeSpeed={150}
+              backSpeed={100}
+              loop
+            ></ReactTyped>
           </p>
           <br />
           <br />
@@ -69,27 +66,26 @@ const navigate = useNavigate();
       {(address == null || address === "null") && (
         <>
           <div className="flex justify-center mb-8">
-            <button
+            <Link
               className="bg-[#00FFFF] text-black py-2 px-9 rounded-full mr-4"
-              onClick={handleDashboardClick}
+              to="dashboard/hospital/"
             >
               View Hospitals
-            </button>
+            </Link>
           </div>
         </>
       )}
-      {true && (
+      {address != null && address != "null" && (
         <div className="flex justify-center mb-8">
-          {true && (
+          {userType(address) == "patient" && (
             <>
-              <button
+              <Link
                 className="bg-[#00FFFF] text-black py-2 px-9 rounded-full mr-4"
-                onClick={handleDashboardClick}
+                to="/dashboard/hospital"
               >
                 Book Appointment
-              </button>
+              </Link>
 
-              
               <Link
                 className="bg-[#00FFFF] text-black py-2 px-9 rounded-full mr-4"
                 to="viewers"
@@ -98,14 +94,15 @@ const navigate = useNavigate();
               </Link>
             </>
           )}
-          {true && (
+          {userType(address) == "hospital" && (
             <>
-              <button className="bg-[#00FFFF] text-black py-2 px-9 rounded-full">
+              <Link className="bg-[#00FFFF] text-black py-2 px-9 rounded-full"
+              to="/">
                 Hospital
-              </button>
+              </Link>
             </>
           )}
-          {true && (
+          {userType(address) == "none" && (
             <>
               <Link
                 className="bg-[#00FFFF] text-black py-2 px-9 rounded-full mr-4"

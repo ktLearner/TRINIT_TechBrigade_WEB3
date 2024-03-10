@@ -27,7 +27,7 @@ function Prescription() {
     return (
 
         <>
-            <div>
+            <div className='flex justify-center m-30'>
 
                 <form class="w-full max-w-lg" onSubmit={handleSubmit}>
 

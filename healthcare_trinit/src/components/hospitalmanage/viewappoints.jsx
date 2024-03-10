@@ -50,7 +50,7 @@ const ViewAppointmentsComponent = () => {
       </button>
 
       <div className="mb-4">
-        <label className="block text-gray-600">Filter by Department:</label>
+        <h1 className="block text-white">Filter by Department:</h1>
         <select
           value={selectedDepartment}
           onChange={(e) => setSelectedDepartment(e.target.value)}
@@ -75,7 +75,7 @@ const ViewAppointmentsComponent = () => {
           <li key={appointment.toNumber()} className="mb-4">
             <Link to={`/appointment-details/${appointment.toNumber()}`} className="btn-blue">
               View Appointment {appointment.toNumber()}
-            </Link>
+            </Link><br></br><br></br>
           </li>
         ))}
       </ul>
