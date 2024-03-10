@@ -39,7 +39,7 @@ function HospitalRegistrationForm() {
   async function handleSubmit(e) {
     e.preventDefault();
     console.log(formData);
-    let res = await RegisHospital(
+    await RegisHospital(
       window.ethereum,
       formData.hospitalName,
       formData.hospitalType,
@@ -48,7 +48,6 @@ function HospitalRegistrationForm() {
       formData.district,
       formData.website
     );
-    console.log(res);
     if (formData) {
       navigate(`/`);
     } else {

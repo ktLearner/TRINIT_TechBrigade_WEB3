@@ -63,10 +63,9 @@ export async function GetHosId (eth) {
 export async function  RegisHospital(eth,name,type,address,state,district,link) {
     let org = HealthCare(eth, true)
 
-    const res = await org.registerHospital(name,type,address,state,district,link, {
+    await org.registerHospital(name,type,address,state,district,link, {
         gasLimit: 300000
     })
-    return res
 }
 
 export async function  HosDetail(eth) {

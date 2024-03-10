@@ -93,7 +93,7 @@ const router = createBrowserRouter([
     element: <Doc_details />
   },
   {
-    path: '/testing3',
+    path: '/viewReports',
     element: <RecordsViewer />
   },
   {
