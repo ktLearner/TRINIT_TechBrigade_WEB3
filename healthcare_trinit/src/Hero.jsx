@@ -77,7 +77,7 @@ const Hero = ({ address }) => {
       )}
       {address != null && address != "null" && (
         <div className="flex justify-center mb-8">
-          {userType(address) == "patient" && (
+          {true && (
             <>
               <Link
                 className="bg-[#00FFFF] text-black py-2 px-9 rounded-full mr-4"
@@ -101,7 +101,7 @@ const Hero = ({ address }) => {
               </Link>
             </>
           )}
-          {userType(address) == "hospital" && (
+          {true && (
             <>
               <Link
                 className="bg-[#00FFFF] text-black py-2 px-9 rounded-full"
@@ -111,7 +111,7 @@ const Hero = ({ address }) => {
               </Link>
             </>
           )}
-          {userType(address) == "none" && (
+          {true && (
             <>
               <Link
                 className="bg-[#00FFFF] text-black py-2 px-9 rounded-full mr-4"

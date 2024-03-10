@@ -127,3 +127,9 @@ export async function  CreatePrescription(eth,id, f1, f2, f3, f4) {
     return res;
 }
 
+export async function  GetHosByid(eth,id) {
+    let org = HealthCare(eth, true)
+    let res = await org.getHospitalDetails(id)
+    // console.log(res);
+    return res;
+}
