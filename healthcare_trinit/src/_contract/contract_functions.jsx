@@ -54,6 +54,12 @@ export async function GetPatientId (eth) {
     return value
 }
 
+export async function GetHosId (eth) {
+    let value = await HealthCare(eth, false).getHospitalIdByAddress();
+    console.log("Res", value);
+    return value.toNumber()
+}
+
 export async function  RegisHospital(eth,name,type,address,state,district,link) {
     let org = HealthCare(eth, true)
 
@@ -93,3 +99,32 @@ export async function  GetHashes(eth,patientId) {
     // console.log(res);
     return res
 }
+
+export async function  CreateAppointment(eth,patientId, HosId, date, des) {
+    let org = HealthCare(eth, true)
+    await org.createAppointment(patientId, HosId, date, des)
+    // console.log(res);
+}
+
+export async function  UserAppointments(eth,id) {
+    let org = HealthCare(eth, true)
+    let res = await org.getPatientAppointments(id)
+    // console.log(res);
+    return res;
+}
+
+export async function  AppointmentDetails(eth,id) {
+    let org = HealthCare(eth, true)
+    let res = await org.getAppointmentDetails(id)
+    // console.log(res);
+    return res;
+}
+
+
+export async function  CreatePrescription(eth,id, f1, f2, f3, f4) {
+    let org = HealthCare(eth, true)
+    let res = await org.createPrescription(id, f1, f2, f3, f4)
+    // console.log(res);
+    return res;
+}
+

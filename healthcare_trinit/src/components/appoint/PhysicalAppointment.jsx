@@ -1,17 +1,27 @@
-// PhysicalAppointment.js
-import {React,useState} from 'react';
+import { React, useState, useEffect } from 'react';
 import ParticlesComponent from '../../partcles';
 import { Link, useParams } from 'react-router-dom';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { CreateAppointment, GetPatientId } from '../../_contract/contract_functions';
 
 const PhysicalAppointment = () => {
-  const { department } = useParams();
+  const [u_id, setId] = useState(null);
+
+  useEffect(() => {
+    async function getid() {
+      let id = await GetPatientId(window.ethereum);
+      setId(id);
+    }
+    getid();
+  }, []);
+
+  const { id } = useParams();
   const currentDate = new Date(); // Get the current date
   const [selectedDate, setSelectedDate] = useState(currentDate);
+  const [description, setDescription] = useState(null);
   const [bookedDates, setBookedDates] = useState([]);
 
   // Dummy data for the calendar slots
@@ -29,11 +39,17 @@ const PhysicalAppointment = () => {
         <div>
           <p className="text-black">{`Date: ${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`}</p>
           <button
-            onClick={() => {
+            onClick={async () => {
               // Handle booking confirmation logic here
               setBookedDates([...bookedDates, date.toISOString().split('T')[0]]); // Add the booked date to the state
               toast.success('Booking confirmed!');
               // You can add additional logic here, such as API calls for booking confirmation
+              console.log(id);
+              // Check if id is defined before making the function call
+              if (id !== undefined && id !== null) {
+                await CreateAppointment(window.ethereum, u_id, id, date, description);
+              }
+
               // Dismiss the confirmation toast after booking is confirmed
               toast.dismiss(confirmationToastId);
             }}
@@ -88,48 +104,58 @@ const PhysicalAppointment = () => {
     setBookedDates([]); // Clear booked dates
     toast.success('Booking canceled!');
   };
+
   return (
     <div className="container mx-auto mt-8">
       <ParticlesComponent />
       <div className="flex flex-col items-center justify-center h-screen">
-      <h1 className="text-2xl font-bold">Physical Appointment</h1>
-      <>
-      \<div className="container mx-auto mt-8 text-black">
-      <h1 className="text-2xl font-bold mb-4 text-white flex justify-center">{department} - Slot Booking</h1>
-      <div className="flex justify-center mb-4">
-        <div className="text-center">
-          <button onClick={() => setSelectedDate(new Date())} className="bg-blue-500 text-white px-4 py-2 rounded-md mb-2">
-            Today
-          </button>
-          <Calendar
-            onChange={(date) => setSelectedDate(date)}
-            value={selectedDate}
-            navigationAriaLabel="Change month and year"
-            prev2Label="««"
-            prevLabel="«"
-            nextLabel="»"
-            next2Label="»»"
-            className="mb-4"
-            tileContent={({ date }) => {
-              const currentDate = date.toISOString().split('T')[0];
-              const status = calendarData.find((item) => item.date === currentDate)?.status || 'available';
+        <h1 className="text-2xl font-bold">Physical Appointment</h1>
+        <>
+          <div className="container mx-auto mt-8 text-black">
+            <h1 className="text-2xl font-bold mb-4 text-white flex justify-center">{id} - Slot Booking</h1>
+            <div className="flex justify-center mb-4">
+              <div className="text-center">
+                <button onClick={() => setSelectedDate(new Date())} className="bg-blue-500 text-white px-4 py-2 rounded-md mb-2">
+                  Today
+                </button>
+                <Calendar
+                  onChange={(date) => setSelectedDate(date)}
+                  value={selectedDate}
+                  navigationAriaLabel="Change month and year"
+                  prev2Label="««"
+                  prevLabel="«"
+                  nextLabel="»"
+                  next2Label="»»"
+                  className="mb-4"
+                  tileContent={({ date }) => {
+                    const currentDate = date.toISOString().split('T')[0];
+                    const status = calendarData.find((item) => item.date === currentDate)?.status || 'available';
 
-              return (
-                <div
-                  className={`calendar-tile ${
-                    status === 'available' ? (isDateBooked(date) ? 'bg-red-300 cursor-not-allowed' : 'bg-green-300 cursor-pointer') : status === 'full' ? 'bg-red-300' : 'bg-yellow-300'
-                  }`}
-                  onClick={() => handleDateClick(date, status)}
-                >
-                  {date.getDate()}
-                </div>
-              );
-            }}
-          />
-         
-        </div>
+                    return (
+                      <div
+                        className={`calendar-tile ${
+                          status === 'available' ? (isDateBooked(date) ? 'bg-red-300 cursor-not-allowed' : 'bg-green-300 cursor-pointer') : status === 'full' ? 'bg-red-300' : 'bg-yellow-300'
+                        }`}
+                        onClick={() => handleDateClick(date, status)}
+                      >
+                        {date.getDate()}
+                      </div>
+                    );
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+        </>
       </div>
-    </div></>
+      <div class="md:w-2/3">
+        <input
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+          id="inline-full-name"
+          type="text"
+        />
       </div>
     </div>
   );

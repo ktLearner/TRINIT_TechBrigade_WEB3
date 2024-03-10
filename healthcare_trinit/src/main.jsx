@@ -3,10 +3,9 @@ import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import AlterDoctorsComponent from './components/hospitalmanage/managedoctors';
 import AlterDepartmentsComponent from './components/hospitalmanage/managedepartments';
+import AppointmentDetailsComponent from './components/hospitalmanage/appointcalls';
 import Home from './components/appoint/userlogin';
-import CalendarBooking from './components/appoint/datebook'
 import HospitalSelector from './components/Hospitals/Hospital';
-import DepartmentSelection from './components/appoint/department';
 import HomeHospital from './components/hospitalmanage/hospitallogin';
 import ViewAppointmentsComponent from './components/hospitalmanage/viewappoints';
 import UploadPdfReportComponent from './components/hospitalmanage/reports';
@@ -24,28 +23,23 @@ import {
 } from "react-router-dom";
 import Prescription from './Forms/prescription';
 import App from './App';
-import Appointment from './components/appoint/Appointments';
 import { RecoilRoot } from 'recoil';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import AppointmentDetailsComponent from './components/hospitalmanage/appointcalls';
 import HospitalDashboard from './components/hospitalmanage/hospitaldash';
 import HospitalProfile from './components/profile/hospital';
 
 
 const router = createBrowserRouter([
   {
-    path: "/prescription",
+    path: "/prescription/:id",
     element: <Prescription />,
   },
   {
     path: "/alter-doctors",
     element: <AlterDoctorsComponent />,
   },
-  {
-    path: "/appointment-details/:id",
-    element: <AppointmentDetailsComponent />,
-  },
+
   {
     path: "/upload-report",
     element: <UploadPdfReportComponent />,
@@ -55,7 +49,7 @@ const router = createBrowserRouter([
     element: <ViewAppointmentsComponent />,
   },
   {
-    path: "/hospital-dashboard/:userId",
+    path: "/hospital-dashboard",
     element: <HospitalDashboard />,
   },
   {
@@ -75,28 +69,12 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: "/dashboard/hospital/",
+    path: "/dashboard/hospital",
     element: <HospitalSelector />,
   },
   {
-    path: "/dashboard/hospital/:userId",
-    element: <HospitalSelector />,
-  },
-  {
-    path: "/appointment/:hospitalName",
-    element: <Appointment />,
-  },
-  {
-    path: "/appointment/:hospitalName/physical-appointment",
+    path: "/appointment/:id",
     element: <PhysicalAppointment />,
-  },
-  {
-    path: "/physical-appointment/departments",
-    element: <DepartmentSelection />,
-  },
-  {
-    path: "/physical-appointment/calendar/:department",
-    element: <CalendarBooking />,
   },
   {
     path: "/profile",
@@ -117,10 +95,14 @@ const router = createBrowserRouter([
   {
     path: '/testing3',
     element: <RecordsViewer />
-  },  
+  },
   {
     path: '/registerHospital',
     element: <HospitalRegistrationForm />
+  },
+  {
+    path: '/appointment-details/:id',
+    element: <AppointmentDetailsComponent />
   }
 ]);
 

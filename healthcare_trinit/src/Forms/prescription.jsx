@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { CreatePrescription } from '../_contract/contract_functions';
+
 
 function Prescription() {
+    const { id } = useParams();
 
     const [follow, setFollow] = useState('');
     const [diagnosis, setDiagnosis] = useState('');
@@ -8,15 +12,18 @@ function Prescription() {
     const [medicine, setMedicine] = useState('');
 
 
-    const handleSubmit = (event) => {
+    async function handleSubmit(event){
         event.preventDefault();
+
+        await CreatePrescription(window.ethereum, id, medicine, diagnosis, advice, follow);
         // Here you can perform any action with the form data, such as sending it to a server
         console.log('Form submitted:', { follow, diagnosis, advice, medicine });
+
         // Clear the form fields after submission
         setFollow('');
         setAdvice('');
         setMedicine('');
-    };
+    }
     return (
 
         <>

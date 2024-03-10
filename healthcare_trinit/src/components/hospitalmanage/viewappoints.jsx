@@ -1,30 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { GetHosId, GetPatientId, UserAppointments } from '../../_contract/contract_functions';
 
 const ViewAppointmentsComponent = () => {
-  const [appointments, setAppointments] = useState([
-    {
-      id: 1,
-      patientName: 'John Doe',
-      doctor: 'Dr. Smith',
-      department: 'Cardiology',
-      date: '2024-03-10',
-      time: '10:00 AM',
-    },
-    {
-      id: 2,
-      patientName: 'Jane Smith',
-      doctor: 'Dr. Johnson',
-      department: 'Orthopedics',
-      date: '2024-03-12',
-      time: '02:30 PM',
-    },
-    // Add more dummy appointments as needed
-  ]);
+  const [id, setId] = useState(null);
+  const [appointments, setAppointments] = useState([]);
+
+  useEffect(() => {
+    async function getid() {
+      let iid = await GetPatientId(window.ethereum);
+      let res = await UserAppointments(window.ethereum, iid);
+      console.log("errror", res);
+      setAppointments(res);
+      setId(iid);
+      console.log("skjdnvkj", iid);
+    }
+    getid();
+  }, []);
+
+
 
   const [selectedDepartment, setSelectedDepartment] = useState('');
 
-  // Function to sort appointments by date
   const sortAppointmentsByDate = () => {
     const sortedAppointments = [...appointments].sort((a, b) =>
       a.date.localeCompare(b.date)
@@ -32,7 +29,6 @@ const ViewAppointmentsComponent = () => {
     setAppointments(sortedAppointments);
   };
 
-  // Function to filter appointments by department
   const filterAppointmentsByDepartment = () => {
     const filteredAppointments = selectedDepartment
       ? appointments.filter(
@@ -75,15 +71,10 @@ const ViewAppointmentsComponent = () => {
       </button>
 
       <ul className="list-disc pl-4">
-        {appointments.map((appointment) => (
-          <li key={appointment.id} className="mb-4">
-            <strong>Patient:</strong> {appointment.patientName}<br />
-            <strong>Doctor:</strong> {appointment.doctor}<br />
-            <strong>Department:</strong> {appointment.department}<br />
-            <strong>Date:</strong> {appointment.date}<br />
-            <strong>Time:</strong> {appointment.time}<br />
-            <Link to={`/appointment-details/${appointment.id}`} className="btn-blue">
-              View
+        {appointments && appointments.map((appointment) => (
+          <li key={appointment.toNumber()} className="mb-4">
+            <Link to={`/appointment-details/${appointment.toNumber()}`} className="btn-blue">
+              View Appointment {appointment.toNumber()}
             </Link>
           </li>
         ))}
