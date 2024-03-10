@@ -29,12 +29,11 @@
 
 This project aims to develop a secure and user-controlled platform for accessing healthcare details, empowering patients to control their healthcare information while ensuring privacy, security, and seamless interaction with healthcare providers. The platform leverages blockchain technology, smart contracts, and decentralized storage to facilitate secure data exchange and streamline healthcare processes.
 
-A video demonstration of our project : 
+A video demonstration of our project : [G-Drive for video](https://drive.google.com/drive/folders/1S43WlQKL9wnVXQIzN-5oUjcZFvougJWI?usp=sharing)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### Video Explaning the Project
-- [drive link](https://drive.google.com/drive/folders/1S43WlQKL9wnVXQIzN-5oUjcZFvougJWI?usp=sharing)
+
 
 ### Built With
 
@@ -79,21 +78,15 @@ To get a local copy up and running follow these simple example steps.
 Follow the below steps for installing and setting up the app locally
 
 1. Get a pinata API Key and a secret key at [Pinata link](https://www.pinata.cloud/)
-
 2. Clone the repo
    git clone https://github.com/ktLearner/TRINIT_TechBrigade_WEB3.git
    
-3.  Go to the healthcare_trinit Folder
-    cd healthcare_trinit/
-
-4. Install NPM packages
+3. Install NPM packages
    npm install
    
-5. Enter your API details in .env :
-   VITE_PINATA_API_KEY = 'enter api key here' and
-   VITE_PINATA_API_SECRET = 'enter secret key here'
+4. Enter your API details in .env :
+VITE_PINATA_API_KEY = 'enter api key here' and
+VITE_PINATA_API_SECRET = 'enter secret key here'
    
-6. Run the project
-   npm run dev 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
