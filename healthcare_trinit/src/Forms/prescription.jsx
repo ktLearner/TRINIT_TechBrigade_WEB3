@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { CreatePrescription } from '../_contract/contract_functions';
+import Navbar from '../components/Navbar/Navbar';
 
 
 function Prescription() {
@@ -27,6 +28,7 @@ function Prescription() {
     return (
 
         <>
+        <Navbar />
             <div className='flex justify-center m-30'>
 
                 <form class="w-full max-w-lg" onSubmit={handleSubmit}>

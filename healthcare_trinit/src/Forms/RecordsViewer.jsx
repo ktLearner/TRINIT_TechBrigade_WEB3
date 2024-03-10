@@ -26,35 +26,37 @@ function RecordsViewer() {
   };
 
   return (
-    <div
-      style={{
-        // backgroundColor: "#ffffff",
-        padding: "10px",
-        borderRadius: "5px",
-      }}
-    >
+    <>
       <Navbar />
-      {hashes.map((ipfsCID, index) => (
-        <button
-          key={index}
-          className="ipfs-file"
-          onClick={() => openIPFSFile(ipfsCID)}
-          style={{
-            display: "block",
-            margin: "10px auto",
-            padding: "10px 20px",
-            fontSize: "16px",
-            backgroundColor: "#007bff",
-            color: "#ffffff",
-            border: "none",
-            borderRadius: "5px",
-            cursor: "pointer",
-          }}
-        >
-          Report {index + 1}
-        </button>
-      ))}
-    </div>
+      <div
+        style={{
+          // backgroundColor: "#ffffff",
+          padding: "10px",
+          borderRadius: "5px",
+        }}
+      >
+        {hashes.map((ipfsCID, index) => (
+          <button
+            key={index}
+            className="ipfs-file"
+            onClick={() => openIPFSFile(ipfsCID)}
+            style={{
+              display: "block",
+              margin: "10px auto",
+              padding: "10px 20px",
+              fontSize: "16px",
+              backgroundColor: "#007bff",
+              color: "#ffffff",
+              border: "none",
+              borderRadius: "5px",
+              cursor: "pointer",
+            }}
+          >
+            Report {index + 1}
+          </button>
+        ))}
+      </div>
+    </>
   );
 }
 

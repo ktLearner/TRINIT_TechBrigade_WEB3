@@ -10,7 +10,7 @@ const Hero = ({ address }) => {
     if (IsPatientReg(address)) {
       return "patient";
       // return "hospital";
-      //return "none";
+      // return "none";
     } else {
       // return "patient";
       // return "hospital";
@@ -88,6 +88,13 @@ const Hero = ({ address }) => {
 
               <Link
                 className="bg-[#00FFFF] text-black py-2 px-9 rounded-full mr-4"
+                to="view-appointments"
+              >
+                View Appointments
+              </Link>
+
+              <Link
+                className="bg-[#00FFFF] text-black py-2 px-9 rounded-full mr-4"
                 to="viewers"
               >
                 Alter Viewers
@@ -96,9 +103,11 @@ const Hero = ({ address }) => {
           )}
           {userType(address) == "hospital" && (
             <>
-              <Link className="bg-[#00FFFF] text-black py-2 px-9 rounded-full"
-              to="/">
-                Hospital
+              <Link
+                className="bg-[#00FFFF] text-black py-2 px-9 rounded-full"
+                to="/h_profile"
+              >
+                Hospital Details
               </Link>
             </>
           )}
